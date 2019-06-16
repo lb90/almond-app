@@ -50,10 +50,18 @@ char* transform(const char *src) {
       unsigned char val = *src_iter;
       if ( (val >= 48 && val <= 57) ) /* 0-9 */
         *dst_iter++ = val;
-      if ( (val >= 65 && val <= 90) ) /* A-Z */
-        *dst_iter++ = val;
-      if ( (val >= 97 && val <= 122) ) /* a-z */
-        *dst_iter++ = val;
+      else if ( (val >= 65 && val <= 73) ) /* A-I */
+        *dst_iter++ = val - 64 + 48;
+      else if ( (val >= 74 && val <= 82) ) /* J-R */
+        *dst_iter++ = val - 64 - 9 + 48;
+      else if ( (val >= 83 && val <= 90) ) /* S-Z */
+        *dst_iter++ = val - 64 - 9 - 9 + 48;
+      else if ( (val >= 97 && val <= 105) ) /* a-i */
+        *dst_iter++ = val - 96 + 48;
+      else if ( (val >= 106 && val <= 114) ) /* j-r */
+        *dst_iter++ = val - 96 - 9 + 48;
+      else if ( (val >= 115 && val <= 122) ) /* s-z */
+        *dst_iter++ = val - 96 - 9 - 9 + 48;
     }
   *dst_iter = 0;
 
