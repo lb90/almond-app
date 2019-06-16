@@ -1,0 +1,10 @@
+#build directories
+i386/
+x86_64/
+
+#object files
+*.o
+
+#crosscompiler symlinks
+i386-apple-darwin15-clang
+x86_64-apple-darwin15-clang
