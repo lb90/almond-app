@@ -7,6 +7,9 @@ char *util_string_copy(const char *src) {
   char *dst = NULL;
   size_t len;
 
+  if (src == NULL)
+    return NULL;
+
   len = strlen(src);
   dst = (char*) malloc(len + 1);
   if (!dst)

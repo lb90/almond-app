@@ -11,6 +11,8 @@ char* get_boot_disk_sn()
   char *text = NULL;
   DASessionRef session;
 
+  ALMOND_NOTE(("Reading boot drive serial number.\n"));
+
   session = DASessionCreate(kCFAllocatorDefault);
   if (session)
     {
@@ -49,7 +51,7 @@ char* get_boot_disk_sn()
                   text = util_string_copy(u8);
 #else
                   CFIndex length = CFStringGetLength(value_as_string);
-                  CFINdex max_size = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
+                  CFIndex max_size = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
                   char *buffer = (char*) malloc(max_size);
                   if (CFStringGetCString(value_as_string, buffer, max_size, kCFStringEncodingUTF8))
                     text = buffer;
