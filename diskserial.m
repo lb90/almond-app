@@ -11,7 +11,7 @@ char* get_boot_disk_sn()
   char *text = NULL;
   DASessionRef session;
 
-  ALMOND_NOTE(("Reading boot drive serial number.\n"));
+  ALMOND_NOTE(("Reading boot disk serial number.\n"));
 
   session = DASessionCreate(kCFAllocatorDefault);
   if (session)

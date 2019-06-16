@@ -46,9 +46,9 @@ int main(int argc, char **argv) {
 */
   if (text)
     {
-      ALMOND_NOTE(("Retrieved string: %s\n", text));
+      ALMOND_NOTE(("Retrieved string:       %s\n", text));
       text = mangle(text);
-    /*ALMOND_NOTE(("Copied to clipboard: %s\n", text));*/
+      ALMOND_NOTE(("Copied to clipboard:    %s\n", text));
       copy_text_to_clipboard(text);
     }
 
