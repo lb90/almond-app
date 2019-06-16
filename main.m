@@ -46,11 +46,27 @@ int main(int argc, char **argv) {
 */
   if (text)
     {
-      ALMOND_NOTE(("Retrieved string:       %s\n", text));
-      text = mangle(text);
-      ALMOND_NOTE(("Copied to clipboard:    %s\n", text));
-      copy_text_to_clipboard(text);
+      ALMOND_NOTE(("* Retrieved string:       %s\n", text));
     }
+
+  if (!text)
+    {
+      text = stock_text_invalid;
+    }
+  else if (strcmp(text, "0") == 0)
+    {
+      free((void*)text);
+      text = stock_text_zero;
+    }
+  else
+    {
+      char *new_text = mangle(text);
+      free((void*)text);
+      text = new_text;
+    }
+
+  copy_text_to_clipboard(text);
+  ALMOND_NOTE(("* Copied to clipboard:    %s\n", text));
 
   exit(EXIT_SUCCESS);
 }
