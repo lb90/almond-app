@@ -18,15 +18,15 @@ int main(int argc, char **argv) {
   /* only allow one argument */
   if (argc != 2)
     {
-      ALMOND_NOTE(("Usage: %s disksn,platsn\n\n", argv[0]));
+      ALMOND_NOTE(("Usage: %s \"disksn\",\"platsn\"\n\n", argv[0]));
       exit(EXIT_FAILURE);
     }
 
-  if (strcmp(argv[1], "disksn") == 0)
+  if (strcmp(argv[1], "\"disksn\"") == 0)
     {
       text = get_boot_disk_sn();
     }
-  else if (strcmp(argv[1], "platsn") == 0)
+  else if (strcmp(argv[1], "\"platsn\"") == 0)
     {
       text = get_platform_sn();
     }
