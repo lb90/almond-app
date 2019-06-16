@@ -29,6 +29,9 @@ char* get_boot_disk_sn()
           CFDictionaryRef desc_dict;
 
           desc_dict = DADiskCopyDescription(disk);
+#ifdef ALMOND_DEBUG
+          NSLog(@"%@", desc_dict);
+#endif
           if (desc_dict)
             {
               CFTypeRef value;
@@ -36,7 +39,7 @@ char* get_boot_disk_sn()
 
               /* what happens if desc_dict do not contain such entry? */
               value = (CFTypeRef) CFDictionaryGetValue(desc_dict,
-                                                       CFSTR("DAVolumeUUID"));
+                                                       CFSTR("DAMediaUUID"));
                                                        /*TODO kDADiskDescriptionMediaUUIDKey*/
               value_as_string = CFStringCreateWithFormat(NULL,
                                                          NULL,
