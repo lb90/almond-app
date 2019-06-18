@@ -3,7 +3,7 @@
 
 #import "util.h"
 
-char* get_platform_sn() {
+char* get_platform_sn(void) {
   CFMutableDictionaryRef matching;
   io_service_t           service;
   CFStringRef            serial_number;

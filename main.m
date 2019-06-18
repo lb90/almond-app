@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
 
   if (strcmp(argv[1], "disksn") == 0)
     {
-      text = get_boot_disk_sn();
+      text = get_boot_disk_sn_v2();
     }
   else if (strcmp(argv[1], "platsn") == 0)
     {
@@ -35,15 +35,7 @@ int main(int argc, char **argv) {
       ALMOND_NOTE(("Invalid argument: %s\n", argv[1]));
       exit(EXIT_FAILURE);
     }
-/*
-  if (!text)
-    text = stock_text_invalid;
-  if (strcmp(text, "0") == 0)
-    {
-      free(text);
-      text = stock_text_zero;
-    }
-*/
+
   if (text)
     {
       ALMOND_NOTE(("* Retrieved string:       %s\n", text));
