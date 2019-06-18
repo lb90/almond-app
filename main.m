@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
     {
       text = stock_text_invalid;
     }
-  else if (strcmp(text, "0") == 0)
+  else if (strlen(text) == 0 || util_string_all_zeros(text))
     {
       free((void*)text);
       text = stock_text_zero;

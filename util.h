@@ -9,6 +9,7 @@
 #endif
 
 char *util_string_copy(const char *text);
+int util_string_all_zeros(const char *text);
 
 #endif
 
