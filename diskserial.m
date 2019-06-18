@@ -58,49 +58,61 @@ char* get_boot_disk_sn(void)
 
 char* get_boot_disk_sn_v2(void)
 {
-  kern_return_t kr = KERN_SUCCESS;
-  io_iterator_t iter = IO_OBJECT_NULL;
-  io_service_t service = IO_OBJECT_NULL;
-  CFMutableDictionaryRef properties = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
-  char *text = NULL;
+  kern_return_t          kr        = KERN_SUCCESS;
+  io_iterator_t          iter      = IO_OBJECT_NULL;
+  io_service_t           service   = IO_OBJECT_NULL;
+  CFMutableDictionaryRef props     = NULL;
+  CFStringRef            serial    = NULL;
+  char                   *text     = NULL;
 
   ALMOND_NOTE(("Reading boot disk serial number.\n"));
 
   kr = IOServiceGetMatchingServices(kIOMasterPortDefault,
                                     IOServiceNameMatching("AppleAHCIDiskDriver"),
                                     &iter);
-
   if (kr != KERN_SUCCESS)
     {
       ALMOND_NOTE(("Cannot find AppleAHCIDiskDriver services in I/O Registry.\n"));
-      return NULL;
+      goto cleanup;
     }
-
   service = IOIteratorNext(iter);
   if (service == IO_OBJECT_NULL)
     {
       ALMOND_NOTE(("Cannot find AppleAHCIDiskDriver services in I/O Registry.\n"));
-      return NULL;
+      goto cleanup;
     }
-
   kr = IORegistryEntryCreateCFProperties(service,
-                                         &properties,
+                                         &props,
                                          kCFAllocatorDefault,
                                          kNilOptions);
   if (kr != KERN_SUCCESS)
     {
       ALMOND_NOTE(("Cannot inspect I/O Registry entry.\n"));
+      goto cleanup;
     }
-  else
-    {
-      NSDictionary *desc_dict = (__bridge NSDictionary*) properties;
 
-      /*NSLog(@"%@", desc_dict);*/
+#ifdef ALMOND_DEBUG
+  NSLog(@"%@", props);
+#endif
 
-      NSString *sn = [desc_dict objectForKey:@"Serial Number"];
-      text = util_string_copy([sn UTF8String]);
-      CFRelease(properties);
-    }
+  serial = CFStringCreateWithFormat(
+               NULL, NULL, CFSTR("%@"),
+               (CFTypeRef)CFDictionaryGetValue(props, CFSTR("Serial Number")));
+  text = util_cfstring_to_string(serial);
+
+cleanup:
+  if (serial) {
+    CFRelease(serial);
+  }
+  if (props) {
+    CFRelease(props);
+  }
+  if (service != IO_OBJECT_NULL) {
+    IOObjectRelease(service);
+  }
+  if (iter != IO_OBJECT_NULL) { /*TODO: before or after service? */
+    IOObjectRelease(iter);
+  }
 
   return text;
 }

@@ -5,12 +5,12 @@
 #import "util.h"
 
 static
-int isascii(const char *text);
+int string_is_ascii(const char *text);
 static
 char* transform(const char *src);
 
 char* mangle(const char *text) {
-  if (!isascii(text))
+  if (!string_is_ascii(text))
     {
       ALMOND_NOTE(("Error: string is outside ASCII character set.\n"));
       return NULL;
@@ -20,7 +20,7 @@ char* mangle(const char *text) {
 }
 
 static
-int isascii(const char *text) {
+int string_is_ascii(const char *text) {
   const unsigned char *iter = (const unsigned char*) text;
 
   for (; *iter != 0; iter++)

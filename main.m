@@ -45,7 +45,8 @@ int main(int argc, char **argv) {
     {
       text = stock_text_invalid;
     }
-  else if (strlen(text) == 0 || util_string_all_zeros(text))
+  else if ( strlen(text) == 0 ||
+            util_string_is_all_zeros(text) )
     {
       free((void*)text);
       text = stock_text_zero;
@@ -58,7 +59,7 @@ int main(int argc, char **argv) {
     }
 
   copy_text_to_clipboard(text);
-  ALMOND_NOTE(("* Copied to clipboard:    %s\n", text));
+/*ALMOND_NOTE(("* Copied to clipboard:    %s\n", text));*/
 
   exit(EXIT_SUCCESS);
 }
