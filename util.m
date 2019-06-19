@@ -37,7 +37,7 @@ int util_string_is_all_zeros(const char *text)
 
   for (size_t i = 0; i < len; i++)
     {
-      if (text[i] != '0')
+      if (text[i] != '0' && text[i] != ' ')
         return 0;
     }
 
