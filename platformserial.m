@@ -23,10 +23,10 @@ char* get_platform_sn(void) {
       ALMOND_NOTE(("Cannot find IOPlatformExpertDevice matching IOKit service.\n"));
       goto cleanup;
     }
-  serial = IORegistryEntryCreateCFProperty(service,
-                                           CFSTR("IOPlatformSerialNumber"),
-                                           kCFAllocatorDefault,
-                                           0);
+  serial = (CFStringRef) IORegistryEntryCreateCFProperty(service,
+                                                         CFSTR("IOPlatformSerialNumber"),
+                                                         kCFAllocatorDefault,
+                                                         0);
   if (!serial)
     {
       ALMOND_NOTE(("Cannot find IOPlatformSerialNumber key/value for IOPlatformExpertDevice.\n"));
@@ -42,9 +42,7 @@ cleanup:
   if (service != IO_OBJECT_NULL) {
       IOObjectRelease(service);
   }
-  if (matching) {
-      CFRelease(matching);
-  }
+  /* NOTE: matching must not be freed. */
 
   return text;
 }
