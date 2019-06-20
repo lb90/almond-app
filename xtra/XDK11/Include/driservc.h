@@ -32,7 +32,7 @@ written permission of Adobe.
 
 #include "drtypes.h"
 #include "mmiservc.h"
-#include "MIXSND.H"
+#include "mixsnd.h"
 
 
 #ifdef	__cplusplus

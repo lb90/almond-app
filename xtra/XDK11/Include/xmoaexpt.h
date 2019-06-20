@@ -130,10 +130,13 @@ void foo( void )
 ///////////////////////////////////////////////////////////////////////////////////
 
 #ifdef MACINTOSH
+/*
 #include <Dialogs.h>	// for ParamText
-#include <TextUtils.h>	// for c2pstr
+#include <CoreServices/TextUtils.h>	// for c2pstr
+*/
+
 #include <exception>
-#include <MachineExceptions.H>
+/*#include <MachineExceptions.H>*/
 #endif	// MACINTOSH
 
 #ifdef _WINDOWS

@@ -84,7 +84,7 @@ written permission of Adobe.
 //
 ///////////////////////////////////////////////////////////////////////////////////
 
-#include "MuiHelpr.h"
+#include "muihelpr.h"
 
 // Make sure we are using 8 byte alignment (regardless of Host App)
 #ifdef _WINDOWS

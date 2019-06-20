@@ -22,11 +22,11 @@ written permission of Adobe.
 / 1. Include other headers we depend on.
 /--------------------------------------------*/
 /*-------------------------------------------------------------------------*/
-
+/*
 #include <CodeFragments.h>
 #include <Files.h>
 #include <TextUtils.h>
-
+*/
 #include <string.h>
 #include <libkern/OSAtomic.h>
 #if (defined(__APPLE__) && defined(__MACH__)) // for set_new_handler
@@ -317,7 +317,8 @@ typedef struct _MoaXtraMagicCookie * MoaXtraMagicCookie;
     and stop execution (if possible). The string is a C string
     that can be trashed by the routine!
 */
-#define _MOA_DEBUGSTR_(cstr) do { Str255 pstr; c2pstrcpy(pstr, cstr); DebugStr(pstr); } while (0)
+/*#define _MOA_DEBUGSTR_(cstr) do { Str255 pstr; c2pstrcpy(pstr, cstr); DebugStr(pstr); } while (0)*/
+#define _MOA_DEBUGSTR_(cstr)
 
 /*-------------------------------------------------------------------------*/
 /*

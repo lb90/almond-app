@@ -46,11 +46,11 @@ written permission of Adobe.
 #include "mmiplist.h"
 #include "mmivcoer.h"
 #include "mmixscrp.h"
-#include "muiInit.T"
-#include "MuiSym.T"
-#include "XMoaExpt.h"
-#include "XSupport.h"
-#include "MoaNotif.h"
+#include "muiinit.t"
+#include "muisym.t"
+#include "xmoaexpt.h"
+#include "xsupport.h"
+#include "moanotif.h"
 
 class MMString;
 
