@@ -28,11 +28,9 @@ written permission of Adobe.
 #include "mmidate.h"
 #include "mmiclr.h"
 
-
 extern "C" {
 #include "../process.h"
 }
-
 
 /*******************************************************************************
  * SCRIPTING XTRA MESSAGE TABLE DESCRIPTION.

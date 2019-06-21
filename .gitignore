@@ -4,6 +4,8 @@ releases/
 #build directories
 i386/
 x86_64/
+xtra/i386/
+xtra/x86_64/
 
 #object files
 *.o
@@ -12,3 +14,8 @@ x86_64/
 cc
 *gcc*
 *clang*
+
+#builds
+tests/cross/
+tests/native/
+
