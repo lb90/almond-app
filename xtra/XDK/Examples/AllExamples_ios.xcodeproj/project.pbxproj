@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5478D3A81749F039007B70FC /* otto.sig in Resources */ = {isa = PBXBuildFile; fileRef = 5478D3A71749F039007B70FC /* otto.sig */; };
+		6806D1C516E7275100793C33 /* draccess.dir in Resources */ = {isa = PBXBuildFile; fileRef = 6806D1C216E7275100793C33 /* draccess.dir */; };
+		6806D1C616E7275100793C33 /* DrAccessAssistant.dir in Resources */ = {isa = PBXBuildFile; fileRef = 6806D1C316E7275100793C33 /* DrAccessAssistant.dir */; };
+		6806D1C716E7275100793C33 /* DrOffice.cst in Resources */ = {isa = PBXBuildFile; fileRef = 6806D1C416E7275100793C33 /* DrOffice.cst */; };
+		6806D39316E73CF000793C33 /* oval.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6806D39116E73CF000793C33 /* oval.txt */; };
+		6806D39416E73CF000793C33 /* ovalsprite.dir in Resources */ = {isa = PBXBuildFile; fileRef = 6806D39216E73CF000793C33 /* ovalsprite.dir */; };
+		681C0DBE16E6103C001AD509 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681C0DBD16E6103C001AD509 /* UIKit.framework */; };
+		681C0DC016E6103C001AD509 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681C0DBF16E6103C001AD509 /* Foundation.framework */; };
+		681C0DC216E6103C001AD509 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681C0DC116E6103C001AD509 /* CoreGraphics.framework */; };
+		681C0DDB16E6111C001AD509 /* ottomain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 681C0DDA16E6111C001AD509 /* ottomain.cpp */; };
+		681C0DE016E61131001AD509 /* otto.ini in Resources */ = {isa = PBXBuildFile; fileRef = 681C0DDC16E61131001AD509 /* otto.ini */; };
+		681C0DE116E61131001AD509 /* OttoiPadImage-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C0DDD16E61131001AD509 /* OttoiPadImage-Portrait.png */; };
+		681C0DE216E61131001AD509 /* projector_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C0DDE16E61131001AD509 /* projector_57x57.png */; };
+		681C0DE316E61131001AD509 /* projector_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C0DDF16E61131001AD509 /* projector_72x72.png */; };
+		681C0DF316E62B06001AD509 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 681C0DF116E62B06001AD509 /* localized.strings */; };
+		68BACD9416E7780700FC738D /* libTileFilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BACD9116E777FC00FC738D /* libTileFilter.a */; };
+		68BACD9616E7782700FC738D /* tile_filter_test.dir in Resources */ = {isa = PBXBuildFile; fileRef = 68BACD9516E7782700FC738D /* tile_filter_test.dir */; };
+		68E4276516E7468F00176C60 /* libDrAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4138116E74471008BFA1E /* libDrAccess.a */; };
+		68E4276616E7468F00176C60 /* libOval.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4138B16E74471008BFA1E /* libOval.a */; };
+		68E4276716E7468F00176C60 /* libValueChecker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4137B16E74471008BFA1E /* libValueChecker.a */; };
+		68E4276816E7468F00176C60 /* libXArray.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4138616E74471008BFA1E /* libXArray.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68A4137A16E74471008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D1B516E7268500793C33 /* ValueChecker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 682FE92B16DF465B009510F9;
+			remoteInfo = ValueChecker;
+		};
+		68A4138016E74471008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D1A116E7255A00793C33 /* DrAccess.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6806D17C16E722EA00793C33;
+			remoteInfo = DrAccess;
+		};
+		68A4138516E74471008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 681C0DF416E63245001AD509 /* XArray.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 682FE92B16DF465B009510F9;
+			remoteInfo = XArray;
+		};
+		68A4138A16E74471008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D38816E73C9A00793C33 /* Oval.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6806D1D316E72A0F00793C33;
+			remoteInfo = Oval;
+		};
+		68A4138C16E7449F008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D1A116E7255A00793C33 /* DrAccess.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6806D17B16E722EA00793C33;
+			remoteInfo = DrAccess;
+		};
+		68A4138E16E7449F008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 681C0DF416E63245001AD509 /* XArray.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 682FE92A16DF465B009510F9;
+			remoteInfo = XArray;
+		};
+		68A4139016E7449F008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D1B516E7268500793C33 /* ValueChecker.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 682FE92A16DF465B009510F9;
+			remoteInfo = ValueChecker;
+		};
+		68A4139216E7449F008BFA1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6806D38816E73C9A00793C33 /* Oval.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6806D1D216E72A0F00793C33;
+			remoteInfo = Oval;
+		};
+		68BACD9016E777FC00FC738D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68BACD8916E777FC00FC738D /* TileFilter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 68BACD4F16E7767300FC738D;
+			remoteInfo = TileFilter;
+		};
+		68BACD9216E7780300FC738D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68BACD8916E777FC00FC738D /* TileFilter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 68BACD4E16E7767300FC738D;
+			remoteInfo = TileFilter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5478D3A71749F039007B70FC /* otto.sig */ = {isa = PBXFileReference; lastKnownFileType = file; name = otto.sig; path = ios/Resources/otto.sig; sourceTree = "<group>"; };
+		6806D1A116E7255A00793C33 /* DrAccess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DrAccess.xcodeproj; path = Script/DrAccess/iosproj/DrAccess.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6806D1B516E7268500793C33 /* ValueChecker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ValueChecker.xcodeproj; path = Script/valuechecker/iosproj/ValueChecker.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6806D1C216E7275100793C33 /* draccess.dir */ = {isa = PBXFileReference; lastKnownFileType = file; name = draccess.dir; path = Script/DrAccess/draccess.dir; sourceTree = "<group>"; };
+		6806D1C316E7275100793C33 /* DrAccessAssistant.dir */ = {isa = PBXFileReference; lastKnownFileType = file; name = DrAccessAssistant.dir; path = Script/DrAccess/DrAccessAssistant.dir; sourceTree = "<group>"; };
+		6806D1C416E7275100793C33 /* DrOffice.cst */ = {isa = PBXFileReference; lastKnownFileType = file; name = DrOffice.cst; path = Script/DrAccess/DrOffice.cst; sourceTree = "<group>"; };
+		6806D38816E73C9A00793C33 /* Oval.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Oval.xcodeproj; path = Sprite/Oval/iosproj/Oval.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6806D39116E73CF000793C33 /* oval.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = oval.txt; path = Sprite/Oval/oval.txt; sourceTree = "<group>"; };
+		6806D39216E73CF000793C33 /* ovalsprite.dir */ = {isa = PBXFileReference; lastKnownFileType = file; name = ovalsprite.dir; path = Sprite/Oval/ovalsprite.dir; sourceTree = "<group>"; };
+		681C0DB916E6103C001AD509 /* Otto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		681C0DBD16E6103C001AD509 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		681C0DBF16E6103C001AD509 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		681C0DC116E6103C001AD509 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		681C0DDA16E6111C001AD509 /* ottomain.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ottomain.cpp; path = ios/ottomain.cpp; sourceTree = SOURCE_ROOT; };
+		681C0DDC16E61131001AD509 /* otto.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = otto.ini; path = ios/Resources/otto.ini; sourceTree = "<group>"; };
+		681C0DDD16E61131001AD509 /* OttoiPadImage-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "OttoiPadImage-Portrait.png"; path = "ios/Resources/OttoiPadImage-Portrait.png"; sourceTree = "<group>"; };
+		681C0DDE16E61131001AD509 /* projector_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector_57x57.png; path = ios/Resources/projector_57x57.png; sourceTree = "<group>"; };
+		681C0DDF16E61131001AD509 /* projector_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = projector_72x72.png; path = ios/Resources/projector_72x72.png; sourceTree = "<group>"; };
+		681C0DEE16E628FC001AD509 /* Otto.Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Otto.Common.xcconfig; path = ios/Otto.Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		681C0DEF16E628FC001AD509 /* Otto.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Otto.Debug.xcconfig; path = ios/Otto.Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		681C0DF016E628FC001AD509 /* Otto.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Otto.Release.xcconfig; path = ios/Otto.Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		681C0DF216E62B06001AD509 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ios/Resources/en.lproj/localized.strings; sourceTree = "<group>"; };
+		681C0DF416E63245001AD509 /* XArray.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XArray.xcodeproj; path = Script/XArray/iosproj/XArray.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BACD8916E777FC00FC738D /* TileFilter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TileFilter.xcodeproj; path = Filter/TileFilter/iosproj/TileFilter.xcodeproj; sourceTree = "<group>"; };
+		68BACD9516E7782700FC738D /* tile_filter_test.dir */ = {isa = PBXFileReference; lastKnownFileType = file; name = tile_filter_test.dir; path = Filter/TileFilter/tile_filter_test.dir; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		681C0DB616E6103C001AD509 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68BACD9416E7780700FC738D /* libTileFilter.a in Frameworks */,
+				68E4276516E7468F00176C60 /* libDrAccess.a in Frameworks */,
+				68E4276616E7468F00176C60 /* libOval.a in Frameworks */,
+				68E4276716E7468F00176C60 /* libValueChecker.a in Frameworks */,
+				68E4276816E7468F00176C60 /* libXArray.a in Frameworks */,
+				681C0DBE16E6103C001AD509 /* UIKit.framework in Frameworks */,
+				681C0DC016E6103C001AD509 /* Foundation.framework in Frameworks */,
+				681C0DC216E6103C001AD509 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6806D1C116E7273800793C33 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				68BACD9516E7782700FC738D /* tile_filter_test.dir */,
+				6806D39116E73CF000793C33 /* oval.txt */,
+				6806D39216E73CF000793C33 /* ovalsprite.dir */,
+				6806D1C216E7275100793C33 /* draccess.dir */,
+				6806D1C316E7275100793C33 /* DrAccessAssistant.dir */,
+				6806D1C416E7275100793C33 /* DrOffice.cst */,
+			);
+			name = Movies;
+			sourceTree = "<group>";
+		};
+		681C0DAE16E6103C001AD509 = {
+			isa = PBXGroup;
+			children = (
+				68BACD8916E777FC00FC738D /* TileFilter.xcodeproj */,
+				6806D38816E73C9A00793C33 /* Oval.xcodeproj */,
+				681C0DC316E6103C001AD509 /* Otto */,
+				681C0DD916E6110B001AD509 /* Resources */,
+				6806D1C116E7273800793C33 /* Movies */,
+				6806D1B516E7268500793C33 /* ValueChecker.xcodeproj */,
+				6806D1A116E7255A00793C33 /* DrAccess.xcodeproj */,
+				681C0DF416E63245001AD509 /* XArray.xcodeproj */,
+				681C0DBC16E6103C001AD509 /* Frameworks */,
+				681C0DBA16E6103C001AD509 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		681C0DBA16E6103C001AD509 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				681C0DB916E6103C001AD509 /* Otto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		681C0DBC16E6103C001AD509 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				681C0DBD16E6103C001AD509 /* UIKit.framework */,
+				681C0DBF16E6103C001AD509 /* Foundation.framework */,
+				681C0DC116E6103C001AD509 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		681C0DC316E6103C001AD509 /* Otto */ = {
+			isa = PBXGroup;
+			children = (
+				681C0DEE16E628FC001AD509 /* Otto.Common.xcconfig */,
+				681C0DEF16E628FC001AD509 /* Otto.Debug.xcconfig */,
+				681C0DF016E628FC001AD509 /* Otto.Release.xcconfig */,
+				681C0DDA16E6111C001AD509 /* ottomain.cpp */,
+			);
+			path = Otto;
+			sourceTree = "<group>";
+		};
+		681C0DD916E6110B001AD509 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5478D3A71749F039007B70FC /* otto.sig */,
+				681C0DF116E62B06001AD509 /* localized.strings */,
+				681C0DDC16E61131001AD509 /* otto.ini */,
+				681C0DDD16E61131001AD509 /* OttoiPadImage-Portrait.png */,
+				681C0DDE16E61131001AD509 /* projector_57x57.png */,
+				681C0DDF16E61131001AD509 /* projector_72x72.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		68A4137716E74471008BFA1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68A4137B16E74471008BFA1E /* libValueChecker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68A4137D16E74471008BFA1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68A4138116E74471008BFA1E /* libDrAccess.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68A4138216E74471008BFA1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68A4138616E74471008BFA1E /* libXArray.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68A4138716E74471008BFA1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68A4138B16E74471008BFA1E /* libOval.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68BACD8A16E777FC00FC738D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68BACD9116E777FC00FC738D /* libTileFilter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		681C0DB816E6103C001AD509 /* Otto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 681C0DD116E6103C001AD509 /* Build configuration list for PBXNativeTarget "Otto" */;
+			buildPhases = (
+				681C0DB516E6103C001AD509 /* Sources */,
+				681C0DB616E6103C001AD509 /* Frameworks */,
+				681C0DB716E6103C001AD509 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68BACD9316E7780300FC738D /* PBXTargetDependency */,
+				68A4138D16E7449F008BFA1E /* PBXTargetDependency */,
+				68A4138F16E7449F008BFA1E /* PBXTargetDependency */,
+				68A4139116E7449F008BFA1E /* PBXTargetDependency */,
+				68A4139316E7449F008BFA1E /* PBXTargetDependency */,
+			);
+			name = Otto;
+			productName = Otto;
+			productReference = 681C0DB916E6103C001AD509 /* Otto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		681C0DB016E6103C001AD509 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 681C0DB316E6103C001AD509 /* Build configuration list for PBXProject "AllExamples_ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 681C0DAE16E6103C001AD509;
+			productRefGroup = 681C0DBA16E6103C001AD509 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 68A4137D16E74471008BFA1E /* Products */;
+					ProjectRef = 6806D1A116E7255A00793C33 /* DrAccess.xcodeproj */;
+				},
+				{
+					ProductGroup = 68A4138716E74471008BFA1E /* Products */;
+					ProjectRef = 6806D38816E73C9A00793C33 /* Oval.xcodeproj */;
+				},
+				{
+					ProductGroup = 68BACD8A16E777FC00FC738D /* Products */;
+					ProjectRef = 68BACD8916E777FC00FC738D /* TileFilter.xcodeproj */;
+				},
+				{
+					ProductGroup = 68A4137716E74471008BFA1E /* Products */;
+					ProjectRef = 6806D1B516E7268500793C33 /* ValueChecker.xcodeproj */;
+				},
+				{
+					ProductGroup = 68A4138216E74471008BFA1E /* Products */;
+					ProjectRef = 681C0DF416E63245001AD509 /* XArray.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				681C0DB816E6103C001AD509 /* Otto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		68A4137B16E74471008BFA1E /* libValueChecker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libValueChecker.a;
+			remoteRef = 68A4137A16E74471008BFA1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		68A4138116E74471008BFA1E /* libDrAccess.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDrAccess.a;
+			remoteRef = 68A4138016E74471008BFA1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		68A4138616E74471008BFA1E /* libXArray.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libXArray.a;
+			remoteRef = 68A4138516E74471008BFA1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		68A4138B16E74471008BFA1E /* libOval.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOval.a;
+			remoteRef = 68A4138A16E74471008BFA1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		68BACD9116E777FC00FC738D /* libTileFilter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTileFilter.a;
+			remoteRef = 68BACD9016E777FC00FC738D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		681C0DB716E6103C001AD509 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681C0DE016E61131001AD509 /* otto.ini in Resources */,
+				681C0DE116E61131001AD509 /* OttoiPadImage-Portrait.png in Resources */,
+				681C0DE216E61131001AD509 /* projector_57x57.png in Resources */,
+				681C0DE316E61131001AD509 /* projector_72x72.png in Resources */,
+				681C0DF316E62B06001AD509 /* localized.strings in Resources */,
+				6806D1C516E7275100793C33 /* draccess.dir in Resources */,
+				6806D1C616E7275100793C33 /* DrAccessAssistant.dir in Resources */,
+				6806D1C716E7275100793C33 /* DrOffice.cst in Resources */,
+				6806D39316E73CF000793C33 /* oval.txt in Resources */,
+				6806D39416E73CF000793C33 /* ovalsprite.dir in Resources */,
+				68BACD9616E7782700FC738D /* tile_filter_test.dir in Resources */,
+				5478D3A81749F039007B70FC /* otto.sig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		681C0DB516E6103C001AD509 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681C0DDB16E6111C001AD509 /* ottomain.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68A4138D16E7449F008BFA1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DrAccess;
+			targetProxy = 68A4138C16E7449F008BFA1E /* PBXContainerItemProxy */;
+		};
+		68A4138F16E7449F008BFA1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XArray;
+			targetProxy = 68A4138E16E7449F008BFA1E /* PBXContainerItemProxy */;
+		};
+		68A4139116E7449F008BFA1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ValueChecker;
+			targetProxy = 68A4139016E7449F008BFA1E /* PBXContainerItemProxy */;
+		};
+		68A4139316E7449F008BFA1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Oval;
+			targetProxy = 68A4139216E7449F008BFA1E /* PBXContainerItemProxy */;
+		};
+		68BACD9316E7780300FC738D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TileFilter;
+			targetProxy = 68BACD9216E7780300FC738D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		681C0DF116E62B06001AD509 /* localized.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				681C0DF216E62B06001AD509 /* en */,
+			);
+			name = localized.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		681C0DCF16E6103C001AD509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DEF16E628FC001AD509 /* Otto.Debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Debug;
+		};
+		681C0DD016E6103C001AD509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DF016E628FC001AD509 /* Otto.Release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		681C0DD216E6103C001AD509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DEF16E628FC001AD509 /* Otto.Debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Pandian (CFV82275V4)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphoneos\"",
+				);
+				PROVISIONING_PROFILE = "17BF45C8-BBE9-4E50-8F2D-3CBA0816153C";
+			};
+			name = Debug;
+		};
+		681C0DD316E6103C001AD509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DF016E628FC001AD509 /* Otto.Release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Pandian (CFV82275V4)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphoneos\"",
+				);
+				PROVISIONING_PROFILE = "17BF45C8-BBE9-4E50-8F2D-3CBA0816153C";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		681C0DB316E6103C001AD509 /* Build configuration list for PBXProject "AllExamples_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681C0DCF16E6103C001AD509 /* Debug */,
+				681C0DD016E6103C001AD509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		681C0DD116E6103C001AD509 /* Build configuration list for PBXNativeTarget "Otto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681C0DD216E6103C001AD509 /* Debug */,
+				681C0DD316E6103C001AD509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 681C0DB016E6103C001AD509 /* Project object */;
+}

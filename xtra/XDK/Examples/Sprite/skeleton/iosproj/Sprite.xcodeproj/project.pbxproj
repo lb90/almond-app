@@ -1,0 +1,229 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6806D1D716E72A0F00793C33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6806D1D616E72A0F00793C33 /* Foundation.framework */; };
+		6822159916EF3910001B9C35 /* casset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6822159216EF3910001B9C35 /* casset.cpp */; };
+		6822159A16EF3910001B9C35 /* casset.h in Headers */ = {isa = PBXBuildFile; fileRef = 6822159316EF3910001B9C35 /* casset.h */; };
+		6822159B16EF3910001B9C35 /* cregster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6822159416EF3910001B9C35 /* cregster.cpp */; };
+		6822159C16EF3910001B9C35 /* cregster.h in Headers */ = {isa = PBXBuildFile; fileRef = 6822159516EF3910001B9C35 /* cregster.h */; };
+		6822159D16EF3910001B9C35 /* csprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6822159616EF3910001B9C35 /* csprite.cpp */; };
+		6822159E16EF3910001B9C35 /* csprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 6822159716EF3910001B9C35 /* csprite.h */; };
+		6822159F16EF3910001B9C35 /* xtra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6822159816EF3910001B9C35 /* xtra.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6806D1D316E72A0F00793C33 /* libSprite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSprite.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6806D1D616E72A0F00793C33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6822158F16EF38E7001B9C35 /* Sprite.Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Sprite.Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		6822159016EF38E7001B9C35 /* Sprite.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Sprite.Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		6822159116EF38E7001B9C35 /* Sprite.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Sprite.Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		6822159216EF3910001B9C35 /* casset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = casset.cpp; path = ../source/casset.cpp; sourceTree = SOURCE_ROOT; };
+		6822159316EF3910001B9C35 /* casset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = casset.h; path = ../source/casset.h; sourceTree = SOURCE_ROOT; };
+		6822159416EF3910001B9C35 /* cregster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cregster.cpp; path = ../source/cregster.cpp; sourceTree = SOURCE_ROOT; };
+		6822159516EF3910001B9C35 /* cregster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cregster.h; path = ../source/cregster.h; sourceTree = SOURCE_ROOT; };
+		6822159616EF3910001B9C35 /* csprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = csprite.cpp; path = ../source/csprite.cpp; sourceTree = SOURCE_ROOT; };
+		6822159716EF3910001B9C35 /* csprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = csprite.h; path = ../source/csprite.h; sourceTree = SOURCE_ROOT; };
+		6822159816EF3910001B9C35 /* xtra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xtra.cpp; path = ../source/xtra.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6806D1D016E72A0F00793C33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6806D1D716E72A0F00793C33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6806D1C816E72A0F00793C33 = {
+			isa = PBXGroup;
+			children = (
+				6806D1D916E72A0F00793C33 /* Supporting Files */,
+				6806D1D816E72A0F00793C33 /* Sprite */,
+				6806D1D516E72A0F00793C33 /* Frameworks */,
+				6806D1D416E72A0F00793C33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6806D1D416E72A0F00793C33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6806D1D316E72A0F00793C33 /* libSprite.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6806D1D516E72A0F00793C33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6806D1D616E72A0F00793C33 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6806D1D816E72A0F00793C33 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				6822159216EF3910001B9C35 /* casset.cpp */,
+				6822159316EF3910001B9C35 /* casset.h */,
+				6822159416EF3910001B9C35 /* cregster.cpp */,
+				6822159516EF3910001B9C35 /* cregster.h */,
+				6822159616EF3910001B9C35 /* csprite.cpp */,
+				6822159716EF3910001B9C35 /* csprite.h */,
+				6822159816EF3910001B9C35 /* xtra.cpp */,
+			);
+			name = Sprite;
+			path = Oval;
+			sourceTree = "<group>";
+		};
+		6806D1D916E72A0F00793C33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6822158F16EF38E7001B9C35 /* Sprite.Common.xcconfig */,
+				6822159016EF38E7001B9C35 /* Sprite.Debug.xcconfig */,
+				6822159116EF38E7001B9C35 /* Sprite.Release.xcconfig */,
+			);
+			name = "Supporting Files";
+			path = Oval;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6806D1D116E72A0F00793C33 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6822159A16EF3910001B9C35 /* casset.h in Headers */,
+				6822159C16EF3910001B9C35 /* cregster.h in Headers */,
+				6822159E16EF3910001B9C35 /* csprite.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6806D1D216E72A0F00793C33 /* Sprite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6806D1E016E72A0F00793C33 /* Build configuration list for PBXNativeTarget "Sprite" */;
+			buildPhases = (
+				6806D1CF16E72A0F00793C33 /* Sources */,
+				6806D1D016E72A0F00793C33 /* Frameworks */,
+				6806D1D116E72A0F00793C33 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sprite;
+			productName = Oval;
+			productReference = 6806D1D316E72A0F00793C33 /* libSprite.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6806D1CA16E72A0F00793C33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 6806D1CD16E72A0F00793C33 /* Build configuration list for PBXProject "Sprite" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6806D1C816E72A0F00793C33;
+			productRefGroup = 6806D1D416E72A0F00793C33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6806D1D216E72A0F00793C33 /* Sprite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6806D1CF16E72A0F00793C33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6822159916EF3910001B9C35 /* casset.cpp in Sources */,
+				6822159B16EF3910001B9C35 /* cregster.cpp in Sources */,
+				6822159D16EF3910001B9C35 /* csprite.cpp in Sources */,
+				6822159F16EF3910001B9C35 /* xtra.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6806D1DE16E72A0F00793C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6822159016EF38E7001B9C35 /* Sprite.Debug.xcconfig */;
+			buildSettings = {
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Debug;
+		};
+		6806D1DF16E72A0F00793C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6822159116EF38E7001B9C35 /* Sprite.Release.xcconfig */;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		6806D1E116E72A0F00793C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6822159016EF38E7001B9C35 /* Sprite.Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		6806D1E216E72A0F00793C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6822159116EF38E7001B9C35 /* Sprite.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6806D1CD16E72A0F00793C33 /* Build configuration list for PBXProject "Sprite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6806D1DE16E72A0F00793C33 /* Debug */,
+				6806D1DF16E72A0F00793C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6806D1E016E72A0F00793C33 /* Build configuration list for PBXNativeTarget "Sprite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6806D1E116E72A0F00793C33 /* Debug */,
+				6806D1E216E72A0F00793C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6806D1CA16E72A0F00793C33 /* Project object */;
+}

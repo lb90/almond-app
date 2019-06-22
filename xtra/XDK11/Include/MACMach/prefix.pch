@@ -1,5 +1,0 @@
-//
-// Standard prefix header for XDK example source files.
-//
-
-#include <Carbon/Carbon.h>

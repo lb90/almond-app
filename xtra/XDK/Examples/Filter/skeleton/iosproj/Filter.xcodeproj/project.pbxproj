@@ -1,0 +1,222 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		68BACD5316E7767300FC738D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BACD5216E7767300FC738D /* Foundation.framework */; };
+		68E8985E16F1DC80003125E0 /* cfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E8985916F1DC80003125E0 /* cfilter.cpp */; };
+		68E8985F16F1DC80003125E0 /* cfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E8985A16F1DC80003125E0 /* cfilter.h */; };
+		68E8986016F1DC80003125E0 /* cregster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E8985B16F1DC80003125E0 /* cregster.cpp */; };
+		68E8986116F1DC80003125E0 /* cregster.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E8985C16F1DC80003125E0 /* cregster.h */; };
+		68E8986216F1DC80003125E0 /* xtra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68E8985D16F1DC80003125E0 /* xtra.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		68BACD4F16E7767300FC738D /* libFilter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFilter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BACD5216E7767300FC738D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		68E8985616F1DC5C003125E0 /* Filter.Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Filter.Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		68E8985716F1DC5C003125E0 /* Filter.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Filter.Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		68E8985816F1DC5C003125E0 /* Filter.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Filter.Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		68E8985916F1DC80003125E0 /* cfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cfilter.cpp; path = ../source/cfilter.cpp; sourceTree = SOURCE_ROOT; };
+		68E8985A16F1DC80003125E0 /* cfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cfilter.h; path = ../source/cfilter.h; sourceTree = SOURCE_ROOT; };
+		68E8985B16F1DC80003125E0 /* cregster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cregster.cpp; path = ../source/cregster.cpp; sourceTree = SOURCE_ROOT; };
+		68E8985C16F1DC80003125E0 /* cregster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cregster.h; path = ../source/cregster.h; sourceTree = SOURCE_ROOT; };
+		68E8985D16F1DC80003125E0 /* xtra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xtra.cpp; path = ../source/xtra.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		68BACD4C16E7767300FC738D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68BACD5316E7767300FC738D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		68BACD4416E7767300FC738D = {
+			isa = PBXGroup;
+			children = (
+				68BACD5516E7767300FC738D /* Supporting Files */,
+				68BACD5416E7767300FC738D /* TileFilter */,
+				68BACD5116E7767300FC738D /* Frameworks */,
+				68BACD5016E7767300FC738D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		68BACD5016E7767300FC738D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68BACD4F16E7767300FC738D /* libFilter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68BACD5116E7767300FC738D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68BACD5216E7767300FC738D /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		68BACD5416E7767300FC738D /* TileFilter */ = {
+			isa = PBXGroup;
+			children = (
+				68E8985916F1DC80003125E0 /* cfilter.cpp */,
+				68E8985A16F1DC80003125E0 /* cfilter.h */,
+				68E8985B16F1DC80003125E0 /* cregster.cpp */,
+				68E8985C16F1DC80003125E0 /* cregster.h */,
+				68E8985D16F1DC80003125E0 /* xtra.cpp */,
+			);
+			path = TileFilter;
+			sourceTree = "<group>";
+		};
+		68BACD5516E7767300FC738D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				68E8985616F1DC5C003125E0 /* Filter.Common.xcconfig */,
+				68E8985716F1DC5C003125E0 /* Filter.Debug.xcconfig */,
+				68E8985816F1DC5C003125E0 /* Filter.Release.xcconfig */,
+			);
+			name = "Supporting Files";
+			path = TileFilter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		68BACD4D16E7767300FC738D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68E8985F16F1DC80003125E0 /* cfilter.h in Headers */,
+				68E8986116F1DC80003125E0 /* cregster.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		68BACD4E16E7767300FC738D /* Filter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68BACD5C16E7767300FC738D /* Build configuration list for PBXNativeTarget "Filter" */;
+			buildPhases = (
+				68BACD4B16E7767300FC738D /* Sources */,
+				68BACD4C16E7767300FC738D /* Frameworks */,
+				68BACD4D16E7767300FC738D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Filter;
+			productName = TileFilter;
+			productReference = 68BACD4F16E7767300FC738D /* libFilter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		68BACD4616E7767300FC738D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 68BACD4916E7767300FC738D /* Build configuration list for PBXProject "Filter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 68BACD4416E7767300FC738D;
+			productRefGroup = 68BACD5016E7767300FC738D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				68BACD4E16E7767300FC738D /* Filter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		68BACD4B16E7767300FC738D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68E8985E16F1DC80003125E0 /* cfilter.cpp in Sources */,
+				68E8986016F1DC80003125E0 /* cregster.cpp in Sources */,
+				68E8986216F1DC80003125E0 /* xtra.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		68BACD5A16E7767300FC738D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E8985716F1DC5C003125E0 /* Filter.Debug.xcconfig */;
+			buildSettings = {
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Debug;
+		};
+		68BACD5B16E7767300FC738D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E8985816F1DC5C003125E0 /* Filter.Release.xcconfig */;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		68BACD5D16E7767300FC738D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E8985716F1DC5C003125E0 /* Filter.Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		68BACD5E16E7767300FC738D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E8985816F1DC5C003125E0 /* Filter.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		68BACD4916E7767300FC738D /* Build configuration list for PBXProject "Filter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68BACD5A16E7767300FC738D /* Debug */,
+				68BACD5B16E7767300FC738D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68BACD5C16E7767300FC738D /* Build configuration list for PBXNativeTarget "Filter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68BACD5D16E7767300FC738D /* Debug */,
+				68BACD5E16E7767300FC738D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 68BACD4616E7767300FC738D /* Project object */;
+}

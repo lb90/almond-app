@@ -1,11 +1,7 @@
-#releases
-releases/
-
 #build directories
 i386/
 x86_64/
-xtra/i386/
-xtra/x86_64/
+xtra/Almond.xtra/Contents/MacOS/Almond
 
 #object files
 *.o

@@ -1,0 +1,204 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		682FE92F16DF465B009510F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682FE92E16DF465B009510F9 /* Foundation.framework */; };
+		682FE94016DF46B8009510F9 /* xarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682FE93E16DF46B8009510F9 /* xarray.cpp */; };
+		682FE94116DF46B8009510F9 /* xarray.h in Headers */ = {isa = PBXBuildFile; fileRef = 682FE93F16DF46B8009510F9 /* xarray.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		681C0DE716E6146A001AD509 /* XArray.Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XArray.Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		681C0DE816E6146A001AD509 /* XArray.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XArray.Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		681C0DE916E6146A001AD509 /* XArray.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XArray.Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		682FE92B16DF465B009510F9 /* libXArray.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXArray.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		682FE92E16DF465B009510F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		682FE93E16DF46B8009510F9 /* xarray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xarray.cpp; path = ../source/xarray.cpp; sourceTree = SOURCE_ROOT; };
+		682FE93F16DF46B8009510F9 /* xarray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xarray.h; path = ../source/xarray.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		682FE92816DF465B009510F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				682FE92F16DF465B009510F9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		681C0DE516E6145B001AD509 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				681C0DE716E6146A001AD509 /* XArray.Common.xcconfig */,
+				681C0DE816E6146A001AD509 /* XArray.Debug.xcconfig */,
+				681C0DE916E6146A001AD509 /* XArray.Release.xcconfig */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		682FE92016DF465B009510F9 = {
+			isa = PBXGroup;
+			children = (
+				681C0DE516E6145B001AD509 /* Supporting Files */,
+				682FE93016DF465B009510F9 /* XArray */,
+				682FE92D16DF465B009510F9 /* Frameworks */,
+				682FE92C16DF465B009510F9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		682FE92C16DF465B009510F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				682FE92B16DF465B009510F9 /* libXArray.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		682FE92D16DF465B009510F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				682FE92E16DF465B009510F9 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		682FE93016DF465B009510F9 /* XArray */ = {
+			isa = PBXGroup;
+			children = (
+				682FE93E16DF46B8009510F9 /* xarray.cpp */,
+				682FE93F16DF46B8009510F9 /* xarray.h */,
+			);
+			path = XArray;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		682FE92916DF465B009510F9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				682FE94116DF46B8009510F9 /* xarray.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		682FE92A16DF465B009510F9 /* XArray */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 682FE93816DF465B009510F9 /* Build configuration list for PBXNativeTarget "XArray" */;
+			buildPhases = (
+				682FE92716DF465B009510F9 /* Sources */,
+				682FE92816DF465B009510F9 /* Frameworks */,
+				682FE92916DF465B009510F9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XArray;
+			productName = XArray;
+			productReference = 682FE92B16DF465B009510F9 /* libXArray.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		682FE92216DF465B009510F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 682FE92516DF465B009510F9 /* Build configuration list for PBXProject "XArray" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 682FE92016DF465B009510F9;
+			productRefGroup = 682FE92C16DF465B009510F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				682FE92A16DF465B009510F9 /* XArray */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		682FE92716DF465B009510F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				682FE94016DF46B8009510F9 /* xarray.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		682FE93616DF465B009510F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DE816E6146A001AD509 /* XArray.Debug.xcconfig */;
+			buildSettings = {
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Debug;
+		};
+		682FE93716DF465B009510F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DE916E6146A001AD509 /* XArray.Release.xcconfig */;
+			buildSettings = {
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		682FE93916DF465B009510F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DE816E6146A001AD509 /* XArray.Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		682FE93A16DF465B009510F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 681C0DE916E6146A001AD509 /* XArray.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		682FE92516DF465B009510F9 /* Build configuration list for PBXProject "XArray" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				682FE93616DF465B009510F9 /* Debug */,
+				682FE93716DF465B009510F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		682FE93816DF465B009510F9 /* Build configuration list for PBXNativeTarget "XArray" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				682FE93916DF465B009510F9 /* Debug */,
+				682FE93A16DF465B009510F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 682FE92216DF465B009510F9 /* Project object */;
+}

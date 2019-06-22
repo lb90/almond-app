@@ -1,0 +1,224 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6806D18016E722EA00793C33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6806D17F16E722EA00793C33 /* Foundation.framework */; };
+		6806D19A16E7232D00793C33 /* dracreg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6806D19316E7232D00793C33 /* dracreg.cpp */; };
+		6806D19B16E7232D00793C33 /* dracreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 6806D19416E7232D00793C33 /* dracreg.h */; };
+		6806D19C16E7232D00793C33 /* dracscrp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6806D19516E7232D00793C33 /* dracscrp.cpp */; };
+		6806D19D16E7232D00793C33 /* dracscrp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6806D19616E7232D00793C33 /* dracscrp.h */; };
+		6806D19E16E7232D00793C33 /* dracxtra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6806D19716E7232D00793C33 /* dracxtra.cpp */; };
+		6806D19F16E7232D00793C33 /* drmedfix.c in Sources */ = {isa = PBXBuildFile; fileRef = 6806D19816E7232D00793C33 /* drmedfix.c */; };
+		6806D1A016E7232D00793C33 /* drmedfix.h in Headers */ = {isa = PBXBuildFile; fileRef = 6806D19916E7232D00793C33 /* drmedfix.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6806D17C16E722EA00793C33 /* libDrAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDrAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6806D17F16E722EA00793C33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6806D18F16E7232100793C33 /* DrAccess.Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DrAccess.Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		6806D19016E7232100793C33 /* DrAccess.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DrAccess.Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		6806D19116E7232100793C33 /* DrAccess.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DrAccess.Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		6806D19316E7232D00793C33 /* dracreg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dracreg.cpp; path = ../source/dracreg.cpp; sourceTree = SOURCE_ROOT; };
+		6806D19416E7232D00793C33 /* dracreg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dracreg.h; path = ../source/dracreg.h; sourceTree = SOURCE_ROOT; };
+		6806D19516E7232D00793C33 /* dracscrp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = dracscrp.cpp; path = ../source/dracscrp.cpp; sourceTree = SOURCE_ROOT; };
+		6806D19616E7232D00793C33 /* dracscrp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dracscrp.h; path = ../source/dracscrp.h; sourceTree = SOURCE_ROOT; };
+		6806D19716E7232D00793C33 /* dracxtra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dracxtra.cpp; path = ../source/dracxtra.cpp; sourceTree = SOURCE_ROOT; };
+		6806D19816E7232D00793C33 /* drmedfix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = drmedfix.c; path = ../source/drmedfix.c; sourceTree = SOURCE_ROOT; };
+		6806D19916E7232D00793C33 /* drmedfix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = drmedfix.h; path = ../source/drmedfix.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6806D17916E722EA00793C33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6806D18016E722EA00793C33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6806D17116E722EA00793C33 = {
+			isa = PBXGroup;
+			children = (
+				6806D18216E722EA00793C33 /* Supporting Files */,
+				6806D18116E722EA00793C33 /* DrAccess */,
+				6806D17E16E722EA00793C33 /* Frameworks */,
+				6806D17D16E722EA00793C33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6806D17D16E722EA00793C33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6806D17C16E722EA00793C33 /* libDrAccess.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6806D17E16E722EA00793C33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6806D17F16E722EA00793C33 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6806D18116E722EA00793C33 /* DrAccess */ = {
+			isa = PBXGroup;
+			children = (
+				6806D19316E7232D00793C33 /* dracreg.cpp */,
+				6806D19416E7232D00793C33 /* dracreg.h */,
+				6806D19516E7232D00793C33 /* dracscrp.cpp */,
+				6806D19616E7232D00793C33 /* dracscrp.h */,
+				6806D19716E7232D00793C33 /* dracxtra.cpp */,
+				6806D19816E7232D00793C33 /* drmedfix.c */,
+				6806D19916E7232D00793C33 /* drmedfix.h */,
+			);
+			path = DrAccess;
+			sourceTree = "<group>";
+		};
+		6806D18216E722EA00793C33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6806D18F16E7232100793C33 /* DrAccess.Common.xcconfig */,
+				6806D19016E7232100793C33 /* DrAccess.Debug.xcconfig */,
+				6806D19116E7232100793C33 /* DrAccess.Release.xcconfig */,
+			);
+			name = "Supporting Files";
+			path = DrAccess;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6806D17A16E722EA00793C33 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6806D19B16E7232D00793C33 /* dracreg.h in Headers */,
+				6806D19D16E7232D00793C33 /* dracscrp.h in Headers */,
+				6806D1A016E7232D00793C33 /* drmedfix.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6806D17B16E722EA00793C33 /* DrAccess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6806D18916E722EA00793C33 /* Build configuration list for PBXNativeTarget "DrAccess" */;
+			buildPhases = (
+				6806D17816E722EA00793C33 /* Sources */,
+				6806D17916E722EA00793C33 /* Frameworks */,
+				6806D17A16E722EA00793C33 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DrAccess;
+			productName = DrAccess;
+			productReference = 6806D17C16E722EA00793C33 /* libDrAccess.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6806D17316E722EA00793C33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 6806D17616E722EA00793C33 /* Build configuration list for PBXProject "DrAccess" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6806D17116E722EA00793C33;
+			productRefGroup = 6806D17D16E722EA00793C33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6806D17B16E722EA00793C33 /* DrAccess */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6806D17816E722EA00793C33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6806D19A16E7232D00793C33 /* dracreg.cpp in Sources */,
+				6806D19C16E7232D00793C33 /* dracscrp.cpp in Sources */,
+				6806D19E16E7232D00793C33 /* dracxtra.cpp in Sources */,
+				6806D19F16E7232D00793C33 /* drmedfix.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6806D18716E722EA00793C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6806D19016E7232100793C33 /* DrAccess.Debug.xcconfig */;
+			buildSettings = {
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+			};
+			name = Debug;
+		};
+		6806D18816E722EA00793C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6806D19116E7232100793C33 /* DrAccess.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		6806D18A16E722EA00793C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6806D19016E7232100793C33 /* DrAccess.Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		6806D18B16E722EA00793C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6806D19116E7232100793C33 /* DrAccess.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6806D17616E722EA00793C33 /* Build configuration list for PBXProject "DrAccess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6806D18716E722EA00793C33 /* Debug */,
+				6806D18816E722EA00793C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6806D18916E722EA00793C33 /* Build configuration list for PBXNativeTarget "DrAccess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6806D18A16E722EA00793C33 /* Debug */,
+				6806D18B16E722EA00793C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6806D17316E722EA00793C33 /* Project object */;
+}
