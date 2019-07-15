@@ -32,6 +32,10 @@ extern "C" {
 #include "../process.h"
 }
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
 /*******************************************************************************
  * SCRIPTING XTRA MESSAGE TABLE DESCRIPTION.
  *
@@ -133,6 +137,36 @@ END_XTRA
 /* ============================================================================= */
 
 
+
+#ifdef ALMOND_DEBUG
+void append_string_to_log(const char *text)
+{
+  static const char *home_dir = getenv("HOME");
+/*  static const char *path*/
+  if (!text)
+    return;
+/*  if (!home_dir)
+    return;*/
+
+  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
+  if (f)
+    {
+      time_t result = time(NULL);
+      if (result != -1)
+        {
+          fprintf(f, "%s: ", asctime(gmtime(&result)));
+        }
+      else
+        {
+          fprintf(f, "<unknown time>: ");
+        }
+      fprintf(f, "%s\n", text);
+      fclose(f);
+    }
+}
+#endif
+
+
 STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 {
 moa_try
@@ -194,7 +228,9 @@ STDMETHODIMP TStdXtra_IMoaRegister::Register(
 	MoaError err = kMoaErr_NoErr;
 	PIMoaRegistryEntryDict pReg;
 	PMoaVoid pMemStr = NULL;
-
+#ifdef ALMOND_DEBUG
+	append_string_to_log("Register called");
+#endif
 	/* Register as scripting xtra (manifest that we implement IMoaMmXScript iface) */
 	err = pCache->AddRegistryEntry(pXtraDict, &CLSID_TStdXtra, &IID_IMoaMmXScript, &pReg);
 	if (err != kMoaErr_NoErr) {
@@ -247,6 +283,9 @@ TStdXtra_IMoaMmXScript::~TStdXtra_IMoaMmXScript()
 /* ----------------------------------------------------------------------------- */
 STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 {
+#ifdef ALMOND_DEBUG
+	append_string_to_log("Call called");
+#endif
 	switch	( callPtr->methodSelector ) 
 	{
 		case m_new:
@@ -269,19 +308,43 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				MoaError err = kMoaErr_NoErr;
 				MoaMmValue argValue;
 				ConstPMoaChar   str;
-
+#ifdef ALMOND_DEBUG
+				append_string_to_log("Handler");
+#endif
 				/* This shows how to access an argument
 				/  the first argument in the list is the "me" value, so the user arguments
 				/  start at the second position in the list */
-				pciGetArgByIndex( callPtr, 2, &argValue );
+				pciGetArgByIndex( callPtr, 1, &argValue );
 
 				err = pObj->pValueInterface->ValueToStringPtr( &argValue, &str );
 				if (err == kMoaErr_NoErr && str != NULL) {
-					process(str);
+					char *res = NULL;
+					int success = 0;
+#ifdef ALMOND_DEBUG
+					append_string_to_log("Executing process");
+					append_string_to_log(str);
+#endif
+					success = process(str, &res);
 
+#ifdef ALMOND_DEBUG
+					if (success == 0) {
+						append_string_to_log("Process finished allright!");
+						if (res)
+							append_string_to_log(res);
+					}
+					else {
+						append_string_to_log("Process had problems");
+					}
+#endif
 					/* if we want the lingo handler to return something do it like this
 					*/
-					pObj->pValueInterface->IntegerToValue(0, &callPtr->resultValue);
+					if (!res) {
+						res = "";
+					}
+					pObj->pValueInterface->StringToValue(res, &(callPtr->resultValue));
+				}
+				else {
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 				}
 			}
 			break;

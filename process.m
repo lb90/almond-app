@@ -12,9 +12,11 @@ const char *stock_text_invalid = "1000001";
 const char *stock_text_missing = "1111111";
 const char *stock_text_zero    = "1001001";
 
-int process(const char *arg)
+int process(const char *arg, char **result)
 {
   const char *text = NULL;
+
+  *result = NULL;
 
   if (strcmp(arg, "disksn") == 0)
     {
@@ -37,13 +39,13 @@ int process(const char *arg)
 
   if (!text)
     {
-      text = stock_text_invalid;
+      text = util_string_copy(stock_text_invalid);
     }
   else if ( strlen(text) == 0 ||
             util_string_is_all_zeros(text) )
     {
       free((void*)text);
-      text = stock_text_zero;
+      text = util_string_copy(stock_text_zero);
     }
   else
     {
@@ -53,6 +55,7 @@ int process(const char *arg)
     }
 
   copy_text_to_clipboard(text);
+  *result = text;
 /*ALMOND_NOTE(("Copied to clipboard:    %s\n", text));*/
 
   return 0;
