@@ -48,7 +48,12 @@ char* util_cfstring_to_string(CFStringRef text)
 {
   const char *u8 = [(__bridge NSString*)text UTF8String];
   return util_string_copy(u8);
-/*
+}
+
+#if 0
+
+char* util_cfstring_to_string(CFStringRef text)
+{
   CFIndex length = CFStringGetLength(serial_number);
   CFIndex max_size = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
   char *buffer = (char*) malloc(max_size);
@@ -61,6 +66,7 @@ char* util_cfstring_to_string(CFStringRef text)
       free(buffer);
       return NULL;
     }
-*/
 }
+
+#endif
 

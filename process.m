@@ -4,7 +4,6 @@
 
 #import "platformserial.h"
 #import "diskserial.h"
-#import "clipboard.h"
 #import "mangler.h"
 #import "util.h"
 
@@ -20,7 +19,7 @@ int process(const char *arg, char **result)
 
   if (strcmp(arg, "disksn") == 0)
     {
-      text = get_boot_disk_sn_v2();
+      text = get_boot_disk_sn();
     }
   else if (strcmp(arg, "platsn") == 0)
     {
@@ -54,9 +53,7 @@ int process(const char *arg, char **result)
       text = new_text;
     }
 
-  copy_text_to_clipboard(text);
   *result = text;
-/*ALMOND_NOTE(("Copied to clipboard:    %s\n", text));*/
 
   return 0;
 }

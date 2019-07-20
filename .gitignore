@@ -1,17 +1,15 @@
 #build directories
-i386/
-x86_64/
-xtra/Almond.xtra/Contents/MacOS/Almond
+build/Almond.xtra/Contents/MacOS/Almond
 
 #object files
 *.o
 
 #compiler/crosscompiler symlink
-cc
-*gcc*
-*clang*
+build/*cc*
+build/*gcc*
+build/*clang*
 
-#builds
+#tests
 tests/cross/
 tests/native/
 
