@@ -1,3 +1,7 @@
+#ifndef USING_INIT_FROM_DICT
+#define USING_INIT_FROM_DICT
+#endif
+
 /*
 ADOBE SYSTEMS INCORPORATED
 Copyright 1994 - 2008 Adobe Macromedia Software LLC
@@ -124,6 +128,9 @@ enum
 BEGIN_XTRA
 	BEGIN_XTRA_DEFINES_CLASS(TStdXtra, XTRA_CLASS_VERSION)
 		CLASS_DEFINES_INTERFACE(TStdXtra, IMoaRegister, XTRA_VERSION_NUMBER)
+#ifdef USING_INIT_FROM_DICT
+		CLASS_DEFINES_INTERFACE(TStdXtra, IMoaInitFromDict, XTRA_VERSION_NUMBER)	
+#endif
 		CLASS_DEFINES_INTERFACE(TStdXtra, IMoaMmXScript, XTRA_VERSION_NUMBER)
 		/*
 		 * ---> insert additional interface(s) -->
@@ -257,6 +264,41 @@ cleanup:
 	return kMoaErr_NoErr;
 }
 
+
+#ifdef USING_INIT_FROM_DICT
+
+/* ============================================================================= */
+/*  Methods in TStdXtra_IMoaInitFromDict */
+/* ============================================================================= */
+
+BEGIN_DEFINE_CLASS_INTERFACE(TStdXtra, IMoaInitFromDict)
+END_DEFINE_CLASS_INTERFACE
+
+//******************************************************************************
+TStdXtra_IMoaInitFromDict::TStdXtra_IMoaInitFromDict(MoaError * pErr)
+{
+	*pErr = kMoaErr_NoErr;
+}
+
+//******************************************************************************
+TStdXtra_IMoaInitFromDict::~TStdXtra_IMoaInitFromDict()
+{
+}
+
+
+/* --------------------------------- CScript_IMoaInitFromDict::InitFromDict */
+STDMETHODIMP TStdXtra_IMoaInitFromDict::InitFromDict(PIMoaRegistryEntryDict pRegistryDict)
+{
+	MoaError err = kMoaErr_NoErr;
+
+	/*
+	 *  --> insert additional code -->
+	 */
+
+	return(err);
+}
+
+#endif
 
 
 /* ============================================================================= */

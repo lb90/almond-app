@@ -47,6 +47,16 @@ EXTERN_BEGIN_DEFINE_CLASS_INTERFACE(TStdXtra, IMoaRegister)
 EXTERN_END_DEFINE_CLASS_INTERFACE
 
 
+#ifdef USING_INIT_FROM_DICT
+/*****************************************************************************
+ * Xtra Moa InitFromDict Interface - Class definition
+ ****************************************************************************/
+
+EXTERN_BEGIN_DEFINE_CLASS_INTERFACE(TStdXtra, IMoaInitFromDict)
+	EXTERN_DEFINE_METHOD(MoaError, InitFromDict, (PIMoaRegistryEntryDict))
+EXTERN_END_DEFINE_CLASS_INTERFACE
+#endif
+
 
 /*****************************************************************************
  * Xtra Moa Scripting Interface - Class definition
