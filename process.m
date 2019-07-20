@@ -13,9 +13,9 @@ const char *stock_text_zero    = "1001001";
 
 int process(const char *arg, char **result)
 {
-  const char *text = NULL;
+  char *text = NULL;
 
-  *result = NULL;
+  *result = text;
 
   if (strcmp(arg, "disksn") == 0)
     {

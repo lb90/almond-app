@@ -29,7 +29,7 @@ written permission of Adobe.
 #include "mmiclr.h"
 
 extern "C" {
-#include "../process.h"
+#include "process.h"
 }
 
 #include <stdlib.h>
@@ -308,9 +308,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				MoaError err = kMoaErr_NoErr;
 				MoaMmValue argValue;
 				ConstPMoaChar   str;
-#ifdef ALMOND_DEBUG
-				append_string_to_log("Handler");
-#endif
+
 				/* This shows how to access an argument
 				/  the first argument in the list is the "me" value, so the user arguments
 				/  start at the second position in the list */
@@ -318,34 +316,23 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 
 				err = pObj->pValueInterface->ValueToStringPtr( &argValue, &str );
 				if (err == kMoaErr_NoErr && str != NULL) {
-					char *res = NULL;
+					char *result = NULL;
 					int success = 0;
-#ifdef ALMOND_DEBUG
-					append_string_to_log("Executing process");
-					append_string_to_log(str);
-#endif
-					success = process(str, &res);
+
+					success = process(str, &result);
 
 #ifdef ALMOND_DEBUG
-					if (success == 0) {
-						append_string_to_log("Process finished allright!");
-						if (res)
-							append_string_to_log(res);
-					}
-					else {
-						append_string_to_log("Process had problems");
-					}
+					if (result)
+  					append_string_to_log(result);
 #endif
-					/* if we want the lingo handler to return something do it like this
-					*/
-					if (!res) {
-						res = "";
-					}
-					pObj->pValueInterface->StringToValue(res, &(callPtr->resultValue));
+
+					if (result)
+						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
+					else
+						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 				}
-				else {
+				else
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
-				}
 			}
 			break;
 
