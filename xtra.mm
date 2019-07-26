@@ -143,37 +143,6 @@ END_XTRA
 /* Create/Destroy for class TStdXtra */
 /* ============================================================================= */
 
-
-
-#ifdef ALMOND_DEBUG
-void append_string_to_log(const char *text)
-{
-  static const char *home_dir = getenv("HOME");
-/*  static const char *path*/
-  if (!text)
-    return;
-/*  if (!home_dir)
-    return;*/
-
-  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
-  if (f)
-    {
-      time_t result = time(NULL);
-      if (result != -1)
-        {
-          fprintf(f, "%s: ", asctime(gmtime(&result)));
-        }
-      else
-        {
-          fprintf(f, "<unknown time>: ");
-        }
-      fprintf(f, "%s\n", text);
-      fclose(f);
-    }
-}
-#endif
-
-
 STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 {
 moa_try
@@ -384,4 +353,37 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 	}
 	return kMoaErr_NoErr;
 }
+
+
+/* Helpers */
+
+#ifdef ALMOND_DEBUG
+void append_string_to_log(const char *text)
+{
+  static const char *home_dir = getenv("HOME");
+/*  static const char *path*/
+  if (!text)
+    return;
+/*  if (!home_dir)
+    return;*/
+
+  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
+  if (f)
+    {
+      time_t result = time(NULL);
+      if (result != -1)
+        {
+          fprintf(f, "%s: ", asctime(gmtime(&result)));
+        }
+      else
+        {
+          fprintf(f, "<unknown time>: ");
+        }
+      fprintf(f, "%s\n", text);
+      fclose(f);
+    }
+}
+#endif
+
+/**/
 
