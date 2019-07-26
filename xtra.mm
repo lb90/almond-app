@@ -143,19 +143,62 @@ END_XTRA
 /* Create/Destroy for class TStdXtra */
 /* ============================================================================= */
 
+
+
+#ifdef ALMOND_DEBUG
+void append_string_to_log(const char *text)
+{
+  static const char *home_dir = getenv("HOME");
+/*  static const char *path*/
+  if (!text)
+    return;
+/*  if (!home_dir)
+    return;*/
+
+  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
+  if (f)
+    {
+      time_t result = time(NULL);
+      if (result != -1)
+        {
+          fprintf(f, "%s: ", asctime(gmtime(&result)));
+        }
+      else
+        {
+          fprintf(f, "<unknown time>: ");
+        }
+      fprintf(f, "%s\n", text);
+      fclose(f);
+    }
+}
+#endif
+
+
 STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 {
-	This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface);
-	This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils);
+moa_try
+		
+	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface));
+	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils));
+	
+moa_catch
+moa_catch_end
+moa_try_end
 }
 
 STDMETHODIMP_(void) MoaDestroy_TStdXtra(TStdXtra * This)
 {
+moa_try
+
 	if (This->pValueInterface != NULL) 
-		This->pValueInterface->Release();
+		ThrowErr (This->pValueInterface->Release());
 		
 	if (This->pMoaUtils != NULL) 
-		This->pMoaUtils->Release();
+		ThrowErr (This->pMoaUtils->Release());
+
+moa_catch
+moa_catch_end
+moa_try_end_void
 }
 
 
@@ -341,37 +384,4 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 	}
 	return kMoaErr_NoErr;
 }
-
-
-/* Helpers */
-
-#ifdef ALMOND_DEBUG
-void append_string_to_log(const char *text)
-{
-  static const char *home_dir = getenv("HOME");
-/*  static const char *path*/
-  if (!text)
-    return;
-/*  if (!home_dir)
-    return;*/
-
-  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
-  if (f)
-    {
-      time_t result = time(NULL);
-      if (result != -1)
-        {
-          fprintf(f, "%s: ", asctime(gmtime(&result)));
-        }
-      else
-        {
-          fprintf(f, "<unknown time>: ");
-        }
-      fprintf(f, "%s\n", text);
-      fclose(f);
-    }
-}
-#endif
-
-/**/
 
