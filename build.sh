@@ -2,7 +2,7 @@
 set -u
 set -e
 
-COMPILER=build/i386-apple-darwin15-clang
+COMPILER=./i386-apple-darwin15-clang
 ALMOND_BIN=Almond
 ALMOND_BUNDLE=Almond.xtra
 
@@ -13,9 +13,12 @@ ADDEFINES="-DUSING_INIT_FROM_DICT"
 SOURCES="xtra.mm process.m diskserial.m platformserial.m mangler.m util.m"
 FLAGS="-mmacos-version-min=10.6"
 
-if [ ! -d "build/$ALMOND_BUNDLE/Contents/MacOS/" ]; then
-  mkdir "build/$ALMOND_BUNDLE/Contents/MacOS/"
+if [ ! -d "$ALMOND_BUNDLE/Contents/MacOS/" ]; then
+  mkdir -p "$ALMOND_BUNDLE/Contents/MacOS/"
 fi
 
-$COMPILER -O2 $BUNDLEFLAGS $ADDINCLUDES $ADDEFINES $FLAGS $FRAMEWORKS $SOURCES -o "build/$ALMOND_BUNDLE/Contents/MacOS/$ALMOND_BIN"
+rm -f "$ALMOND_BUNDLE/Contents/PkgInfo"
+echo "XtraXown" > "$ALMOND_BUNDLE/Contents/PkgInfo"
+
+$COMPILER -O2 $BUNDLEFLAGS $ADDINCLUDES $ADDEFINES $FLAGS $FRAMEWORKS $SOURCES -o "$ALMOND_BUNDLE/Contents/MacOS/$ALMOND_BIN"
 
