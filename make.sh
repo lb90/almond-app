@@ -10,7 +10,7 @@ FRAMEWORKS="-framework Carbon -framework CoreFoundation -framework DiskArbitrati
 BUNDLEFLAGS="-bundle -flat_namespace -undefined suppress -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt"
 ADDINCLUDES="-IXDK/Include"
 ADDEFINES="-DUSING_INIT_FROM_DICT"
-SOURCES="xtra.mm process.m diskserial.m platformserial.m mangler.m util.m"
+SOURCES="xtra.mm process.m diskserial.m platformserial.m mangler.m clipboard.m util.m"
 FLAGS="-mmacos-version-min=10.6"
 
 if [ ! -d "$ALMOND_BUNDLE/Contents/MacOS/" ]; then

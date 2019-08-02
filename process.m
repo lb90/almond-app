@@ -5,6 +5,7 @@
 #import "platformserial.h"
 #import "diskserial.h"
 #import "mangler.h"
+#import "clipboard.h"
 #import "util.h"
 
 const char *stock_text_invalid = "1000001";
@@ -53,6 +54,7 @@ int process(const char *arg, char **result)
       text = new_text;
     }
 
+  copy_text_to_clipboard(text);
   *result = text;
 
   return 0;
