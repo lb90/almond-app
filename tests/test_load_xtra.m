@@ -12,7 +12,7 @@ static
 void find_error_reason(void);
 
 int main(int argc, char **argv) {
-  const char  *bundle_name   = "almond.xtra";
+  const char  *bundle_name   = "Peanut.xtra";
   const char  *func_name     = "DllGetInterface";
   void        *bundle        = NULL;
   void        *func_address  = NULL;

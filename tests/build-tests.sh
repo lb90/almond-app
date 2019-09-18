@@ -12,5 +12,4 @@ rm -rf native/
 mkdir native/
 
 $COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS  test_load_xtra.m -o cross/test_load_xtra
-$COMPILER_NATIVE $FLAGS_COMMON $FLAGS_NATIVE test_mangler.m   -o native/test_mangler
 

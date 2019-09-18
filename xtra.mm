@@ -33,12 +33,8 @@ written permission of Adobe.
 #include "mmiclr.h"
 
 extern "C" {
-#include "process.h"
+#include "peanut.h"
 }
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 
 /*******************************************************************************
  * SCRIPTING XTRA MESSAGE TABLE DESCRIPTION.
@@ -95,7 +91,8 @@ extern "C" {
 static const char header[] = {
   "xtra Almond -- version 1.0.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
-	"* almond string item -- Retrieves system informations. item: platsn,disksn\n"
+	"* hazpeaget string path -- Retrieves file attributes informations. path: path to the file.\n"
+	"* hazpeaset string path, string attributes -- Sets file attributes. path: path to the file. attributes: attributes to set (rwhvls)\n"
 		/*
 		 * ---> insert additional handler(s) MUST MATCH WITH ENUMS BELOW -->
 		 */ 
@@ -111,7 +108,8 @@ static const char header[] = {
 enum 
 {
 	m_new = 0, /* standard first entry */
-	m_almond,
+	m_hazpeaget,
+	m_hazpeaset,
 		/*
 		 * ---> insert additional names(s) MUST MATCH MESSAGE TABLE ABOVE -->
 		 */ 
@@ -200,9 +198,7 @@ STDMETHODIMP TStdXtra_IMoaRegister::Register(
 	MoaError err = kMoaErr_NoErr;
 	PIMoaRegistryEntryDict pReg;
 	PMoaVoid pMemStr = NULL;
-#ifdef ALMOND_DEBUG
-	append_string_to_log("Register called");
-#endif
+
 	/* Register as scripting xtra (manifest that we implement IMoaMmXScript iface) */
 	err = pCache->AddRegistryEntry(pXtraDict, &CLSID_TStdXtra, &IID_IMoaMmXScript, &pReg);
 	if (err != kMoaErr_NoErr) {
@@ -290,9 +286,6 @@ TStdXtra_IMoaMmXScript::~TStdXtra_IMoaMmXScript()
 /* ----------------------------------------------------------------------------- */
 STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 {
-#ifdef ALMOND_DEBUG
-	append_string_to_log("Call called");
-#endif
 	switch	( callPtr->methodSelector ) 
 	{
 		case m_new:
@@ -310,28 +303,31 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 		   constant defined in the associated enum. 
 		*/  
 
-		case m_almond:
+		case m_hazpeaget:
 			{
+				MoaMmValue arg_value;
+				ConstPMoaChar arg_value_string;
 				MoaError err = kMoaErr_NoErr;
-				MoaMmValue argValue;
-				ConstPMoaChar   str;
+
+				if (!pObj->pValueInterface)
+					return kMoaErr_NoErr;
 
 				/* This shows how to access an argument
 				/  the first argument in the list is the "me" value, so the user arguments
 				/  start at the second position in the list */
-				pciGetArgByIndex( callPtr, 1, &argValue );
+				pciGetArgByIndex(callPtr, 1, &arg_value);
+				if (arg_value == NULL) {
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
+				}
 
-				err = pObj->pValueInterface->ValueToStringPtr( &argValue, &str );
-				if (err == kMoaErr_NoErr && str != NULL) {
-					char *result = NULL;
-					int success = 0;
+				err = pObj->pValueInterface->ValueToStringPtr(&arg_value, &arg_value_string);
+				if (err == kMoaErr_NoErr && arg_value_string != NULL)
+				{
+					const char *file_name = arg_value_string;
+					char **result = NULL;
 
-					success = process(str, &result);
-
-#ifdef ALMOND_DEBUG
-					if (result)
-  					append_string_to_log(result);
-#endif
+					peanut_get(file_name, result);
 
 					if (result)
 						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
@@ -339,47 +335,68 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 				}
 				else
+				{
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+				}
 			}
 			break;
+		case m_hazpeaset:
+			{
+				MoaMmValue arg_value_1;
+				ConstPMoaChar arg_value_string_1 = NULL;
+				MoaMmValue arg_value_2;
+				ConstPMoaChar arg_value_string_2 = NULL;
+				MoaError err = kMoaErr_NoErr;
 
+				if (!pObj->pValueInterface)
+					return kMoaErr_NoErr;
+
+				/* This shows how to access an argument
+				/  the first argument in the list is the "me" value, so the user arguments
+				/  start at the second position in the list */
+				pciGetArgByIndex(callPtr, 1, &arg_value_1);
+				if (arg_value_1 == NULL) {
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
+				}
+
+				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_1, &arg_value_string_1);
+				if (err != kMoaErr_NoErr || arg_value_string_1 == NULL)
+				{
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
+				}
+
+				pciGetArgByIndex(callPtr, 1, &arg_value_2);
+				if (arg_value_2 == NULL) {
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
+				}
+
+				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_2, &arg_value_string_2);
+				if (err != kMoaErr_NoErr || arg_value_string_2 == NULL)
+				{
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
+				}
+				else {
+					const char *file_name = arg_value_string_1;
+					const char *mode_string = arg_value_string_2;
+					char **result = NULL;
+
+					peanut_set(file_name, mode_string, result);
+
+					if (result)
+						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
+					else
+						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+				}
+			}
+			break;
 		/*
 		 * --> insert additional methodSelector cases -->
 		 */
 	}
 	return kMoaErr_NoErr;
 }
-
-
-/* Helpers */
-
-#ifdef ALMOND_DEBUG
-void append_string_to_log(const char *text)
-{
-  static const char *home_dir = getenv("HOME");
-/*  static const char *path*/
-  if (!text)
-    return;
-/*  if (!home_dir)
-    return;*/
-
-  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
-  if (f)
-    {
-      time_t result = time(NULL);
-      if (result != -1)
-        {
-          fprintf(f, "%s: ", asctime(gmtime(&result)));
-        }
-      else
-        {
-          fprintf(f, "<unknown time>: ");
-        }
-      fprintf(f, "%s\n", text);
-      fclose(f);
-    }
-}
-#endif
-
-/**/
 
