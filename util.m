@@ -15,7 +15,7 @@ char *util_string_copy(const char *src)
   dst = (char*) malloc(len + 1);
   if (!dst)
     {
-      PEANUT_NOTE(("Cannot allocate memory for string copy operation.\n"));
+      /*log("Cannot allocate memory for string copy operation.\n")*/;
       return NULL;
     }
   memset(dst, 0, len + 1);

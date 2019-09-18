@@ -5,7 +5,7 @@
 #import "peanut.h"
 #import "util.h"
 
-void peanut_get(const char *file_name, str_t *result)
+void peanut_get(const char *file_name, char **result)
 {
 	char *res = NULL;
 

@@ -316,23 +316,25 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				/  the first argument in the list is the "me" value, so the user arguments
 				/  start at the second position in the list */
 				pciGetArgByIndex(callPtr, 1, &arg_value);
-				if (arg_value == NULL) {
-					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
-					break;
-				}
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value, &arg_value_string);
 				if (err == kMoaErr_NoErr && arg_value_string != NULL)
 				{
 					const char *file_name = arg_value_string;
-					char **result = NULL;
+					char *result = NULL;
 
-					peanut_get(file_name, result);
+					peanut_get(file_name, &result);
 
 					if (result)
 						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
 					else
 						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+
+					if (result)
+					{
+						free(result);
+						result = NULL;
+					}
 				}
 				else
 				{
@@ -355,10 +357,6 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				/  the first argument in the list is the "me" value, so the user arguments
 				/  start at the second position in the list */
 				pciGetArgByIndex(callPtr, 1, &arg_value_1);
-				if (arg_value_1 == NULL) {
-					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
-					break;
-				}
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_1, &arg_value_string_1);
 				if (err != kMoaErr_NoErr || arg_value_string_1 == NULL)
@@ -368,10 +366,6 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				}
 
 				pciGetArgByIndex(callPtr, 1, &arg_value_2);
-				if (arg_value_2 == NULL) {
-					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
-					break;
-				}
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_2, &arg_value_string_2);
 				if (err != kMoaErr_NoErr || arg_value_string_2 == NULL)
@@ -382,14 +376,14 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				else {
 					const char *file_name = arg_value_string_1;
 					const char *mode_string = arg_value_string_2;
-					char **result = NULL;
+					int result = 0;
 
-					peanut_set(file_name, mode_string, result);
+					peanut_set(file_name, mode_string, &result);
 
-					if (result)
-						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
+					if (result == 1)
+						pObj->pValueInterface->IntegerToValue(1, &(callPtr->resultValue));
 					else
-						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+						pObj->pValueInterface->IntegerToValue(0, &(callPtr->resultValue));
 				}
 			}
 			break;
