@@ -31,6 +31,9 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 {
 	*result = 1;
 
+	BOOL attrib_do = NO;
+	BOOL attrib_immutable = NO;
+
 	struct stat st;
 	if (stat(file_name, &st) < 0) { /* for file flags (hidden, immutable) */
 		*result = 0;
@@ -48,9 +51,11 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 			char a = mode_string[i];
 
 			switch (a) {
-				case 'r':
+				case 'r': attrib_immutable = YES;
+				attrib_do = YES;
 				break;
-				case 'w':
+				case 'w': attrib_immutable = NO;
+				attrib_do = YES;
 				break;
 				case 'h': st.st_flags |= UF_HIDDEN;
 				break;
@@ -68,22 +73,19 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 		*result = 0;
 		return; /*TODO potremmo anche andare avanti */
 	}
-/*
-	NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-*/
-	/* set attributes */
-/*	[attributes setObject:[NSNumber numberWithInt:1] forKey:NSFileImmutable];
 
-	NSString *file_name_ns = [NSString stringWithUTF8String:file_name];
-	NSFileManager *file_manager = [NSFileManager defaultManager];
-	NSError *error = NULL;
-	BOOL success = [file_manager setAttributes:attributes ofItemAtPath:file_name_ns error:&error];
+	if (attrib_do) {
+		NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
 
-	if (success && !error)
-	{
+		[attributes setObject:[NSNumber numberWithInt:attrib_immutable?1:0] forKey:NSFileImmutable];
+
+		NSString *file_name_ns = [NSString stringWithUTF8String:file_name];
+		NSFileManager *file_manager = [NSFileManager defaultManager];
+		NSError *error = NULL;
+		BOOL success = [file_manager setAttributes:attributes ofItemAtPath:file_name_ns error:&error];
+
+		if (!success)
+			*result = 0;
 	}
-	else
-	{
-	}*/
 }
 
