@@ -55,10 +55,13 @@ int main(int argc, char **argv) {
 
 		peanut_get(file_path, &result);
 
-		if (result)
+		if (result) {
 			printf("%s\n", result);
-		else
+			free(result);
+		}
+		else {
 			printf("error\n");
+		}
 	}
 	else if (operation == operation_set) {
 		int result = 0;

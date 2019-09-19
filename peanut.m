@@ -12,80 +12,75 @@
 
 void peanut_get(const char *file_name, char **result)
 {
-	*result = NULL;
+	static const size_t max_size = 4;
 
-/*	NSString *file_name_ns = [NSString stringWithUTF8String:file_name];
-	NSFileManager *file_manager = [NSFileManager defaultManager];
-	NSError *error = NULL;
-	NSDictionary *attributes = [file_manager attributesOfItemAtPath:file_name_ns error:&error];
+	*result = (char*) malloc(max_size);
+	if (!result)
+		return;
+	memset(*result, 0, max_size);
 
 	struct stat st;
-	stat(file_name, &st);
+	if (stat(file_name, &st) < 0) {
+		return;
+	}
 
-	
+	size_t i = 0;
+	(*result)[i++] = (st.st_mode & S_IWUSR)?'w':'r';
+	(*result)[i++] = (st.st_flags & UF_HIDDEN)?'h':'v';
+	(*result)[i++] = (st.st_flags & UF_IMMUTABLE)?'l':'s';
 
-	*result = ;*/
+	(*result)[i] = 0;
 }
 
 void peanut_set(const char *file_name, const char *mode_string, int *result)
 {
 	*result = 1;
 
-	BOOL attrib_do = NO;
-	BOOL attrib_immutable = NO;
-
-	struct stat st;
-	if (stat(file_name, &st) < 0) { /* for file flags (hidden, immutable) */
+	struct stat st_original;
+	if (stat(file_name, &st_original) < 0) {
 		*result = 0;
 		return;
 	}
 
+	struct stat st_new = st_original;
+
 	size_t mode_string_length = strlen(mode_string);
 	if (mode_string_length == 0) {
 		/* fai un reset di tutto */
-		st.st_flags &= ~(UF_HIDDEN | UF_IMMUTABLE);
-		/*TODO r/w*/
+		st_new.st_flags &= ~(UF_HIDDEN | UF_IMMUTABLE);
+		st_new.st_mode |= S_IWUSR;
 	}
 	else {
 		for (size_t i = 0; i < mode_string_length; i++) {
 			char a = mode_string[i];
 
 			switch (a) {
-				case 'r': attrib_immutable = YES;
-				attrib_do = YES;
+				case 'r': st_new.st_mode &= ~(S_IWUSR | S_IWGRP | S_IWOTH);
 				break;
-				case 'w': attrib_immutable = NO;
-				attrib_do = YES;
+				case 'w': st_new.st_mode |= S_IWUSR;
 				break;
-				case 'h': st.st_flags |= UF_HIDDEN;
+				case 'h': st_new.st_flags |= UF_HIDDEN;
 				break;
-				case 'v': st.st_flags &= ~UF_HIDDEN;
+				case 'v': st_new.st_flags &= ~UF_HIDDEN;
 				break;
-				case 'l': st.st_flags |= UF_IMMUTABLE;
+				case 'l': st_new.st_flags |= UF_IMMUTABLE;
 				break;
-				case 's': st.st_flags &= ~UF_IMMUTABLE;
+				case 's': st_new.st_flags &= ~UF_IMMUTABLE;
 				break;
 			}
 		}
 	}
 
-	if (chflags(file_name, st.st_flags) < 0) { /*TODO check return value */
-		*result = 0;
-		return; /*TODO potremmo anche andare avanti */
+	if (st_original.st_flags != st_new.st_flags) {
+		if (chflags(file_name, st_new.st_flags) < 0) { /*TODO check return value */
+			*result = 0;
+		}
 	}
 
-	if (attrib_do) {
-		NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-
-		[attributes setObject:[NSNumber numberWithInt:attrib_immutable?1:0] forKey:NSFileImmutable];
-
-		NSString *file_name_ns = [NSString stringWithUTF8String:file_name];
-		NSFileManager *file_manager = [NSFileManager defaultManager];
-		NSError *error = NULL;
-		BOOL success = [file_manager setAttributes:attributes ofItemAtPath:file_name_ns error:&error];
-
-		if (!success)
+	if (st_original.st_mode != st_new.st_mode) {
+		if (chmod(file_name, st_new.st_mode) < 0) { /*TODO check return value */
 			*result = 0;
+		}
 	}
 }
 
