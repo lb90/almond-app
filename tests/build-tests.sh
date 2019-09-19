@@ -1,4 +1,4 @@
-COMPILER_CROSS=../x86_64-apple-darwin15-clang
+COMPILER_CROSS=../i386-apple-darwin15-clang
 COMPILER_NATIVE=clang
 
 FLAGS_COMMON="-I../"
@@ -12,4 +12,5 @@ rm -rf native/
 mkdir native/
 
 $COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS  test_load_xtra.m -o cross/test_load_xtra
+$COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS  test_application.m ../peanut.m -o cross/test_application
 
