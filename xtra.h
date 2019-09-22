@@ -21,8 +21,8 @@ written permission of Adobe.
 
 /* --------------------------------------------------- */
 
-/*#error "change GUID"*/
-DEFINE_GUID(CLSID_TStdXtra, 0xe8b80e0aL, 0xbafb, 0x423c, 0xb9, 0x64, 0x74, 0x60, 0xfb, 0xa3, 0x15, 0x8e); /*{E8B80E0A-BAFB-423C-B964-7460FBA3158E}*/
+// {FCABF286-F38C-4C97-921C-4D8E3662E96F}
+DEFINE_GUID(CLSID_TStdXtra, 0xfcabf286L, 0xf38c, 0x4c97, 0x92, 0x1c, 0x4d, 0x8e, 0x36, 0x62, 0xe9, 0x6f);
 
 EXTERN_BEGIN_DEFINE_CLASS_INSTANCE_VARS(TStdXtra)
 
