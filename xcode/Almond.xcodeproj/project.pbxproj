@@ -127,7 +127,7 @@
 			);
 			dependencies = (
 			);
-			name = Almond;
+			name = Peanut;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = Script;
 			productReference = 37338C840ADC5D630003801C /* Almond.xtra */;
@@ -220,8 +220,8 @@
 				EXPORTED_SYMBOLS_FILE = ../../XDK/Include/MACmach/xtra_exports.txt;
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtra.almond;
-				PRODUCT_NAME = Almond;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xtra.peanut;
+				PRODUCT_NAME = Peanut;
 			};
 			name = Debug;
 		};
@@ -233,8 +233,8 @@
 				EXPORTED_SYMBOLS_FILE = ../../XDK/Include/MACmach/xtra_exports.txt;
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtra.almond;
-				PRODUCT_NAME = Almond;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xtra.peanut;
+				PRODUCT_NAME = Peanut;
 			};
 			name = Release;
 		};
@@ -246,7 +246,7 @@
 				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = Almond;
+				PRODUCT_NAME = Peanut;
 			};
 			name = Debug;
 		};
@@ -256,7 +256,7 @@
 			buildSettings = {
 				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = Almond;
+				PRODUCT_NAME = Peanut;
 			};
 			name = Release;
 		};
