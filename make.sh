@@ -6,7 +6,7 @@ COMPILER=./i386-apple-darwin15-clang
 TARGET_BIN=Peanut
 TARGET_BUNDLE=Peanut.xtra
 
-FRAMEWORKS="-framework Carbon -framework CoreFoundation -framework Cocoa"
+FRAMEWORKS="-framework Carbon"
 BUNDLEFLAGS="-bundle -flat_namespace -undefined suppress -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt"
 ADDINCLUDES="-IXDK/Include"
 ADDEFINES="-DUSING_INIT_FROM_DICT"

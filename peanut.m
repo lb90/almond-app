@@ -1,4 +1,3 @@
-#import <Cocoa/Cocoa.h>
 #import <sys/types.h>
 #import <sys/stat.h>
 #import <fcntl.h>
