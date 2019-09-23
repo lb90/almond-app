@@ -365,7 +365,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					break;
 				}
 
-				pciGetArgByIndex(callPtr, 1, &arg_value_2);
+				pciGetArgByIndex(callPtr, 2, &arg_value_2);
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_2, &arg_value_string_2);
 				if (err != kMoaErr_NoErr || arg_value_string_2 == NULL)
