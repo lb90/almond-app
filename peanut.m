@@ -89,7 +89,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 	int is_locked = (st_original.st_flags & UF_IMMUTABLE)? 1 : 0;
 	if (permissions_change) {
 		if (locked_change) { /* just a matter of order */
-			if (is_locked) {
+			if (!is_locked) {
 				operation = OP_APPLY_FIRST_PERMISSIONS;
 			}
 		}
