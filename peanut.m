@@ -33,6 +33,13 @@ void peanut_get(const char *file_name, char **result)
 
 void peanut_set(const char *file_name, const char *mode_string, int *result)
 {
+	typedef enum {
+		OP_DONE = 0,
+		OP_APPLY_FLAGS,
+		OP_APPLY_PERMISSIONS,
+		OP_APPLY_PERMISSIONS_TRICK,
+	} op_t;
+
 	*result = 1;
 
 	struct stat st_original;
@@ -45,7 +52,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 
 	size_t mode_string_length = strlen(mode_string);
 	if (mode_string_length == 0) {
-		/* fai un reset di tutto */
+		/* con una stringa vuota fai un reset di tutto */
 		st_new.st_flags &= ~(UF_HIDDEN | UF_IMMUTABLE);
 		st_new.st_mode |= S_IWUSR;
 	}
@@ -71,9 +78,48 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 	}
 
 	/*
+	In Mac Os non e' possibile cambiare i permessi a un file locked.
 	*/
 
-	BOOL read_write_changes = (st_original.st_mode != st_new.st_mode)? YES : NO;
+	const size_t MAX_OPERATIONS = 5;
+	op_t operations[MAX_OPERATIONS] = { OP_DONE }; /*TODO*/
+
+	BOOL permissions_change = (st_original.st_mode != st_new.st_mode)? YES : NO;
+	BOOL locked_change = (    (st_original.st_flags & UF_IMMUTABLE)
+	                       != (st_new.st_flags      & UF_IMMUTABLE))? YES : NO;
+	if (permissions_change) {
+		if (locked_change) { /* just a matter of order */
+			BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
+			if (is_locked) {
+				op[0] = OP_APPLY_PERMISSIONS;
+				op[1] = OP_APPLY_FLAGS;
+				op[2] = OP_DONE;
+			}
+			else {
+				op[0] = OP_APPLY_FLAGS;
+				op[1] = OP_APPLY_PERMISSIONS;
+				op[2] = OP_DONE;
+			}
+		}
+		else {
+			BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
+			if (is_locked) { /* trick */
+				op[0] = OP_APPLY_PERMISSIONS_TRICK;
+				op[1] = OP_APPLY_FLAGS; /* flags may change, too */
+				op[2] = OP_DONE;
+			}
+			else { /* no problem at all */
+				op[0] = OP_APPLY_PERMISSIONS;
+				op[1] = OP_APPLY_FLAGS; /* flags may change, too */
+				op[2] = OP_DONE;
+			}
+		}
+	}
+	else { /* no problem at all */
+		/* permissions do not change, only flags */
+		operations[0] = OP_APPLY_FLAGS;
+		operations[1] = OP_DONE;
+	}
 
 	if (read_write_changes) {
 		printf("ro/w permissions are going to change.\n");
@@ -131,6 +177,34 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 				*result = 0;
 			}
 		}
+	}
+
+	for (size_t i = 0; i < MAX_OPERATIONS; i++) {
+		switch (op[i]) {
+			case OP_APPLY_FLAGS: {
+				if (st_original.st_flags != st_new.st_flags) {
+					if (chflags(file_name, st_new.st_flags) < 0) {
+						*result = 0;
+					}
+				}
+			}
+			break;
+			case OP_APPLY_PERMISSIONS: {
+				if (st_original.st_mode != st_new.st_mode) {
+					if (chmod(file_name, st_new.st_mode) < 0)
+						*result = 0;
+					}
+				}
+			}
+			break;
+			case OP_APPLY_PERMISSIONS_TRICK:
+				
+			break;
+			case OP_DONE: /* silence compiler warning */
+			break;
+		}
+		if (op[i] == OP_DONE)
+			break /* break the for cycle */
 	}
 }
 
