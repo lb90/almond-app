@@ -34,10 +34,9 @@ void peanut_get(const char *file_name, char **result)
 void peanut_set(const char *file_name, const char *mode_string, int *result)
 {
 	typedef enum {
-		OP_DONE = 0,
-		OP_APPLY_FLAGS,
-		OP_APPLY_PERMISSIONS,
-		OP_APPLY_PERMISSIONS_TRICK,
+		OP_APPLY_FIRST_FLAGS,
+		OP_APPLY_FIRST_PERMISSIONS,
+		OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK,
 	} op_t;
 
 	*result = 1;
@@ -81,130 +80,68 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 	In Mac Os non e' possibile cambiare i permessi a un file locked.
 	*/
 
-	const size_t MAX_OPERATIONS = 5;
-	op_t operations[MAX_OPERATIONS] = { OP_DONE }; /*TODO*/
+	op_t operation = OP_APPLY_FIRST_FLAGS; /* default */
 
 	BOOL permissions_change = (st_original.st_mode != st_new.st_mode)? YES : NO;
 	BOOL locked_change = (    (st_original.st_flags & UF_IMMUTABLE)
 	                       != (st_new.st_flags      & UF_IMMUTABLE))? YES : NO;
+	BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
 	if (permissions_change) {
 		if (locked_change) { /* just a matter of order */
-			BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
 			if (is_locked) {
-				op[0] = OP_APPLY_PERMISSIONS;
-				op[1] = OP_APPLY_FLAGS;
-				op[2] = OP_DONE;
-			}
-			else {
-				op[0] = OP_APPLY_FLAGS;
-				op[1] = OP_APPLY_PERMISSIONS;
-				op[2] = OP_DONE;
+				operation = OP_APPLY_FIRST_PERMISSIONS;
 			}
 		}
 		else {
-			BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
 			if (is_locked) { /* trick */
-				op[0] = OP_APPLY_PERMISSIONS_TRICK;
-				op[1] = OP_APPLY_FLAGS; /* flags may change, too */
-				op[2] = OP_DONE;
-			}
-			else { /* no problem at all */
-				op[0] = OP_APPLY_PERMISSIONS;
-				op[1] = OP_APPLY_FLAGS; /* flags may change, too */
-				op[2] = OP_DONE;
+				operation = OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK;
 			}
 		}
 	}
-	else { /* no problem at all */
-		/* permissions do not change, only flags */
-		operations[0] = OP_APPLY_FLAGS;
-		operations[1] = OP_DONE;
-	}
 
-	if (read_write_changes) {
-		printf("ro/w permissions are going to change.\n");
-
-		BOOL locked_unlocked_changes = ((st_original.st_flags & UF_IMMUTABLE)
-		                                != (st_new.st_flags & UF_IMMUTABLE))?
-		                                YES : NO;
-		BOOL original_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
-
-		if (locked_unlocked_changes) {
-			printf("locked/unlocked is going to change.\n");
-			if (original_locked) {
-				printf("original file is locked, but we have to unlock it. "
-				       "first change the flags (which unlocks) and then set ro/w permissions.\n");
-				if (chflags(file_name, st_new.st_flags) < 0)
+	switch (operation) {
+		case OP_APPLY_FIRST_FLAGS: {
+			if (st_original.st_flags != st_new.st_flags) {
+				if (chflags(file_name, st_new.st_flags) < 0) {
 					*result = 0;
-				if (chmod(file_name, st_new.st_mode) < 0)
-					*result = 0;
+				}
 			}
-			else {
-				printf("original is not locked, but we have to lock it. "
-				       "first change ro/w permissions and then change flags (which locks).\n");
-				if (chmod(file_name, st_new.st_mode) < 0)
+			if (st_original.st_mode != st_new.st_mode) {
+				if (chmod(file_name, st_new.st_mode) < 0) {
 					*result = 0;
-				if (chflags(file_name, st_new.st_flags) < 0)
-					*result = 0;
+				}
 			}
 		}
-		else {
-			printf("we won't change locked/unocked at all.\n");
-			if (original_locked) {
-				printf("file is locked (and so will stay). "
-				       "but we have to change permissions.\n");
-				printf("trick: unlock, change permissions, re-lock the file\n");
-				if (chflags(file_name, (st_original.st_flags & ~UF_IMMUTABLE)) < 0)
+		break;
+		case OP_APPLY_FIRST_PERMISSIONS: {
+			if (st_original.st_mode != st_new.st_mode) {
+				if (chmod(file_name, st_new.st_mode) < 0) {
 					*result = 0;
-				if (chmod(file_name, st_new.st_mode) < 0)
-					*result = 0;
-				if (chflags(file_name, st_original.st_flags) < 0)
-					*result = 0;
+				}
 			}
-			else {
-				printf("file is not locked, we have no problems at all!\n.");
-				if (chmod(file_name, st_new.st_mode) < 0)
+			if (st_original.st_flags != st_new.st_flags) {
+				if (chflags(file_name, st_new.st_flags) < 0) {
 					*result = 0;
-				if (chflags(file_name, st_new.st_flags) < 0)
-					*result = 0;
+				}
 			}
 		}
-	}
-	else {
-		printf("we don't have to change ro/w permissions, no problems at all!\n.");
-		if (st_original.st_flags != st_new.st_flags) {
-			if (chflags(file_name, st_new.st_flags) < 0) {
+		break;
+		case OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK:
+			/* se siamo qui sappiamo che
+			   a) il file è locked
+			   b) non cambieremo nulla del locked */
+			if (chflags(file_name, (st_new.st_flags & ~UF_IMMUTABLE)) < 0) {
 				*result = 0;
 			}
-		}
-	}
-
-	for (size_t i = 0; i < MAX_OPERATIONS; i++) {
-		switch (op[i]) {
-			case OP_APPLY_FLAGS: {
-				if (st_original.st_flags != st_new.st_flags) {
-					if (chflags(file_name, st_new.st_flags) < 0) {
-						*result = 0;
-					}
+			if (st_original.st_mode != st_new.st_mode) {
+				if (chmod(file_name, st_new.st_mode) < 0) {
+					*result = 0;
 				}
 			}
-			break;
-			case OP_APPLY_PERMISSIONS: {
-				if (st_original.st_mode != st_new.st_mode) {
-					if (chmod(file_name, st_new.st_mode) < 0)
-						*result = 0;
-					}
-				}
+			if (chflags(file_name, (st_new.st_flags)) < 0) {
+				*result = 0;
 			}
-			break;
-			case OP_APPLY_PERMISSIONS_TRICK:
-				
-			break;
-			case OP_DONE: /* silence compiler warning */
-			break;
-		}
-		if (op[i] == OP_DONE)
-			break /* break the for cycle */
+		break;
 	}
 }
 
