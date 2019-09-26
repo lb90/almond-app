@@ -36,7 +36,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 	typedef enum {
 		OP_APPLY_FIRST_FLAGS,
 		OP_APPLY_FIRST_PERMISSIONS,
-		OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK,
+		OP_APPLY_FLAGS_AND_PERMISSIONS_WITH_TRICK,
 	} op_t;
 
 	*result = 1;
@@ -77,7 +77,8 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 	}
 
 	/*
-	In Mac Os non e' possibile cambiare i permessi a un file locked.
+	 * In Mac OS non e' possibile cambiare i permessi a un file quando ha il flag locked.
+	 * Per ovviare a questo ordiniamo in modo opportuno le operazioni.
 	*/
 
 	op_t operation = OP_APPLY_FIRST_FLAGS; /* default */
@@ -94,7 +95,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 		}
 		else {
 			if (is_locked) { /* trick */
-				operation = OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK;
+				operation = OP_APPLY_FLAGS_AND_PERMISSIONS_WITH_TRICK;
 			}
 		}
 	}
@@ -126,7 +127,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 			}
 		}
 		break;
-		case OP_APPLY_FLAGS_PERMISSIONS_WITH_TRICK:
+		case OP_APPLY_FLAGS_AND_PERMISSIONS_WITH_TRICK:
 			/* se siamo qui sappiamo che
 			   a) il file è locked
 			   b) non cambieremo nulla del locked */
