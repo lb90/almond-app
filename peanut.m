@@ -82,10 +82,10 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 
 	op_t operation = OP_APPLY_FIRST_FLAGS; /* default */
 
-	BOOL permissions_change = (st_original.st_mode != st_new.st_mode)? YES : NO;
-	BOOL locked_change = (    (st_original.st_flags & UF_IMMUTABLE)
-	                       != (st_new.st_flags      & UF_IMMUTABLE))? YES : NO;
-	BOOL is_locked = (st_original.st_flags & UF_IMMUTABLE)? YES : NO;
+	int permissions_change = (st_original.st_mode != st_new.st_mode)? 1 : 0;
+	int locked_change = (    (st_original.st_flags & UF_IMMUTABLE)
+	                      != (st_new.st_flags      & UF_IMMUTABLE))? 1 : 0;
+	int is_locked = (st_original.st_flags & UF_IMMUTABLE)? 1 : 0;
 	if (permissions_change) {
 		if (locked_change) { /* just a matter of order */
 			if (is_locked) {
