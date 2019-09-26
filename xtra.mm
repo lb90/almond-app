@@ -146,6 +146,7 @@ STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 moa_try
 		
 	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface));
+	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils));
 	
 moa_catch
 moa_catch_end
@@ -156,6 +157,8 @@ STDMETHODIMP_(void) MoaDestroy_TStdXtra(TStdXtra * This)
 {
 moa_try
 
+	if (This->pMoaUtils != NULL)
+		ThrowErr (This->pMoaUtils->Release());
 	if (This->pValueInterface != NULL) 
 		ThrowErr (This->pValueInterface->Release());
 

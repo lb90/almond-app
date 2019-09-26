@@ -27,6 +27,7 @@ DEFINE_GUID(CLSID_TStdXtra, 0xfcabf286L, 0xf38c, 0x4c97, 0x92, 0x1c, 0x4d, 0x8e,
 EXTERN_BEGIN_DEFINE_CLASS_INSTANCE_VARS(TStdXtra)
 
 	PIMoaMmValue	pValueInterface;
+	PIMoaMmUtils2 	pMoaUtils;
 	/*
 	 * ---> insert additional variable(s) -->
 	 */ 
