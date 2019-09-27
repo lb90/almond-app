@@ -93,7 +93,7 @@ extern "C" {
  *******************************************************************************/ 
 
 static const char header[] = {
-  "xtra Almond -- version 1.0.0\n"
+  "xtra Almond -- version 1.8.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
 	"* almond string item -- Retrieves system informations. item: platsn,disksn\n"
 		/*
