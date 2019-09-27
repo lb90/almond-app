@@ -27,15 +27,14 @@ char *util_string_copy(const char *src)
 
 int util_string_is_all_zeros(const char *text)
 {
-  size_t len = 0;
-  if (!text)
+  if (text == NULL)
     return 1;
 
-  len = strlen(text);
-  if (len == 0)
+  size_t length = strlen(text);
+  if (length == 0)
     return 1;
 
-  for (size_t i = 0; i < len; i++)
+  for (size_t i = 0; i < length; i++)
     {
       if (text[i] != '0' && text[i] != ' ')
         return 0;

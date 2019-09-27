@@ -94,7 +94,7 @@ extern "C" {
 static const char header[] = {
   "xtra Almond -- version 1.8.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
-	"* almond string item -- Retrieves system informations. item: platsn,disksn\n"
+	"* Almond string item -- Retrieves system informations. item: platsn,disksn\n"
 		/*
 		 * ---> insert additional handler(s) MUST MATCH WITH ENUMS BELOW -->
 		 */ 
@@ -308,14 +308,15 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				err = pObj->pValueInterface->ValueToStringPtr( &argValue, &str );
 				if (err == kMoaErr_NoErr && str != NULL) {
 					char *result = NULL;
-					int success = 0;
 
-					success = process(str, &result);
+					process(str, &result);
 
 					if (result)
 						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
 					else
 						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+
+					free(result);
 				}
 				else
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));

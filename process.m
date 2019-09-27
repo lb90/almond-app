@@ -14,17 +14,15 @@ const char *stock_text_zero    = "1001001";
 
 int process(const char *arg, char **result)
 {
-  char *text = NULL;
-
-  *result = text;
+  *result = NULL;
 
   if (strcmp(arg, "disksn") == 0)
     {
-      text = get_boot_disk_sn();
+      *result = get_boot_disk_sn();
     }
   else if (strcmp(arg, "platsn") == 0)
     {
-      text = get_platform_sn();
+      *result = get_platform_sn();
     }
   else
     {
@@ -32,30 +30,29 @@ int process(const char *arg, char **result)
       return -1;
     }
 
-  if (text)
+  if (*result)
     {
-      ALMOND_NOTE(("Retrieved string:       %s\n", text));
+      ALMOND_NOTE(("Retrieved string:       %s\n", *result));
     }
 
-  if (!text)
+  if (!(*result))
     {
-      text = util_string_copy(stock_text_invalid);
+      *result = util_string_copy(stock_text_invalid);
     }
-  else if ( strlen(text) == 0 ||
-            util_string_is_all_zeros(text) )
+  else if ( strlen(*result) == 0 ||
+            util_string_is_all_zeros(*result) )
     {
-      free((void*)text);
-      text = util_string_copy(stock_text_zero);
+      free(*result);
+      *result = util_string_copy(stock_text_zero);
     }
   else
     {
-      char *new_text = mangle(text);
-      free((void*)text);
-      text = new_text;
+      char *new_text = mangle(*result);
+      free(*result);
+      *result = new_text;
     }
 
-  copy_text_to_clipboard(text);
-  *result = text;
+  copy_text_to_clipboard(*result);
 
   return 0;
 }

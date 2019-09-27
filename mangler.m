@@ -10,6 +10,9 @@ static
 char* transform(const char *src);
 
 char* mangle(const char *text) {
+  if (!text)
+    return NULL;
+
   if (!string_is_ascii(text))
     {
       ALMOND_NOTE(("Error: string is outside ASCII character set.\n"));
@@ -21,8 +24,10 @@ char* mangle(const char *text) {
 
 static
 int string_is_ascii(const char *text) {
-  const unsigned char *iter = (const unsigned char*) text;
+  if (!text)
+    return 1;
 
+  const unsigned char *iter = (const unsigned char*) text;
   for (; *iter != 0; iter++)
     if (*iter > 127)
       return 0;
@@ -32,19 +37,20 @@ int string_is_ascii(const char *text) {
 
 static
 char* transform(const char *src) {
-  size_t src_len = strlen(src);
-  char *dst = (char*) malloc(src_len + 1);
-  const unsigned char *src_iter = (const unsigned char*) src;
-  unsigned char *dst_iter = (unsigned char*) dst;
+  if (!src)
+    return NULL;
 
+  size_t length = strlen(src) + 1;
+  char *dst = (char*) malloc(length);
   if (!dst)
     {
       ALMOND_NOTE(("Cannot allocate memory for string mangling operation.\n"));
       return NULL;
     }
+  memset(dst, 0, length);
 
-  memset(dst, 0, src_len + 1);
-
+  const unsigned char *src_iter = (const unsigned char*) src;
+  unsigned char *dst_iter = (unsigned char*) dst;
   for (; *src_iter != 0; src_iter++)
     {
       unsigned char val = *src_iter;
