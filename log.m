@@ -5,12 +5,35 @@
 #include <errno.h> /* for log_message_with_error_code */
 
 void do_log(log_ctx_t *log,
-         const char *message)
+            const char *message)
 {
   if (!log || !(log->func))
     return;
 
   (log->func)(message, log->data);
+}
+
+void log_message_simple(log_ctx_t *log,
+                        const char *message)
+{
+  do_log(log, message);
+}
+
+void log_message(log_ctx_t *log,
+                 const char *format, ...)
+{
+  va_list ap;
+  va_start(ap, format);
+
+  char *message = util_string_compose_va(format, ap);
+  if (!message)
+    goto cleanup;
+
+  do_log(log, message);
+
+cleanup:
+  free(message);
+  va_end(ap);
 }
 
 void log_message_with_error_code(log_ctx_t *log,

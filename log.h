@@ -9,6 +9,12 @@ typedef struct {
 	void *data;
 } log_ctx_t;
 
+void log_message_simple(log_ctx_t *log,
+                        const char *message);
+
+void log_message(log_ctx_t *log,
+                 const char *format, ...);
+
 void log_message_with_error_code(log_ctx_t *log_ctx,
                                  const char *format, ...);
 
