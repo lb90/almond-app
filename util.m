@@ -43,7 +43,7 @@ char *util_string_compose_va(const char *format, va_list ap)
     return NULL;
 
   size_t length = ((size_t)ret) + 1;
-  char *buffer = malloc(length);
+  char *buffer = (char*) malloc(length);
   if (!buffer)
     return NULL;
   memset(buffer, 0, length);
@@ -59,7 +59,7 @@ char *util_string_compose_va(const char *format, va_list ap)
 
 char *util_string_from_error_code(int error_code) {
   const size_t length = 1024;  /*TODO*/
-  char *buffer = malloc(length);
+  char *buffer = (char*) malloc(length);
   if (!buffer)
     return NULL;
   memset(buffer, 0, length);

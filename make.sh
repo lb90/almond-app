@@ -2,7 +2,7 @@
 set -u
 set -e
 
-COMPILER=./i386-apple-darwin15-clang
+COMPILER=./i386-apple-darwin15-clang++
 TARGET_BIN=Peanut
 TARGET_BUNDLE=Peanut.xtra
 
@@ -11,7 +11,7 @@ BUNDLEFLAGS="-bundle -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt
 ADDINCLUDES="-IXDK/Include"
 ADDEFINES="-DUSING_INIT_FROM_DICT"
 SOURCES="xtra.mm peanut.m util.m log.m"
-FLAGS="-x c++ -arch i386 -mmacos-version-min=10.6"
+FLAGS="-mmacos-version-min=10.6"
 
 if [ ! -d "$TARGET_BUNDLE/Contents/MacOS/" ]; then
   mkdir -p "$TARGET_BUNDLE/Contents/MacOS/"

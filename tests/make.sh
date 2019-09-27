@@ -1,5 +1,5 @@
-COMPILER_CROSS=../i386-apple-darwin15-clang
-COMPILER_NATIVE=clang
+COMPILER_CROSS=../i386-apple-darwin15-clang++
+COMPILER_NATIVE=clang++
 
 FRAMEWORKS="-framework Carbon"
 FLAGS_COMMON="-I../"
