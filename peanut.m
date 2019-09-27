@@ -7,19 +7,22 @@
 #include <string.h>
 
 #import "peanut.h"
-#import "util.h"
+#import "log.h"
 
-void peanut_get(const char *file_name, char **result)
+void peanut_get(const char *file_name, char **result, void *log_ctx)
 {
 	static const size_t max_size = 4;
 
 	*result = (char*) malloc(max_size);
-	if (!result)
+	if (!result) {
+		log_error_code(log_ctx, "Impossibile allocare memoria per %u byte", max_size); /*TODO*/
 		return;
+	}
 	memset(*result, 0, max_size);
 
 	struct stat st;
 	if (stat(file_name, &st) < 0) {
+		log_error_code(log_ctx, "Impossibile eseguire stat di %s", file_name);
 		return;
 	}
 
@@ -31,7 +34,7 @@ void peanut_get(const char *file_name, char **result)
 	(*result)[i] = 0;
 }
 
-void peanut_set(const char *file_name, const char *mode_string, int *result)
+void peanut_set(const char *file_name, const char *mode_string, int *result, void *log_ctx)
 {
 	typedef enum {
 		OP_APPLY_FIRST_FLAGS,
@@ -43,6 +46,7 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 
 	struct stat st_original;
 	if (stat(file_name, &st_original) < 0) {
+		log_error_code(log_ctx, "Impossibile eseguire stat di %s", file_name);
 		*result = 0;
 		return;
 	}
@@ -104,11 +108,13 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 		case OP_APPLY_FIRST_FLAGS: {
 			if (st_original.st_flags != st_new.st_flags) {
 				if (chflags(file_name, st_new.st_flags) < 0) {
+					log_error_code(log_ctx, "Impossibile eseguire chflags di %s (mode: %s)", file_name, mode_string);
 					*result = 0;
 				}
 			}
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name, st_new.st_mode) < 0) {
+					log_error_code(log_ctx, "Impossibile eseguire chmod di %s (mode: %s)", file_name, mode_string);
 					*result = 0;
 				}
 			}
@@ -117,11 +123,13 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 		case OP_APPLY_FIRST_PERMISSIONS: {
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name, st_new.st_mode) < 0) {
+					log_error_code(log_ctx, "Impossibile eseguire chmod di %s (mode: %s)", file_name, mode_string);
 					*result = 0;
 				}
 			}
 			if (st_original.st_flags != st_new.st_flags) {
 				if (chflags(file_name, st_new.st_flags) < 0) {
+					log_error_code(log_ctx, "Impossibile eseguire chflags di %s (mode: %s)", file_name, mode_string);
 					*result = 0;
 				}
 			}
@@ -132,14 +140,17 @@ void peanut_set(const char *file_name, const char *mode_string, int *result)
 			   a) il file è locked
 			   b) non cambieremo nulla del locked */
 			if (chflags(file_name, (st_new.st_flags & ~UF_IMMUTABLE)) < 0) {
-				*result = 0;
+				log_error_code(log_ctx, "Impossibile eseguire chflags per rimuovere flag locked a %s", file_name);
+				*result = 0; return;
 			}
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name, st_new.st_mode) < 0) {
+					log_error_code(log_ctx, "Impossibile eseguire chmod di %s (mode: %s)", file_name, mode_string);
 					*result = 0;
 				}
 			}
 			if (chflags(file_name, (st_new.st_flags)) < 0) {
+				log_error_code(log_ctx, "Impossibile eseguire chflags per aggiungere flag locked a %s", file_name);
 				*result = 0;
 			}
 		break;

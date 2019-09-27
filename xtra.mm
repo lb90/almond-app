@@ -34,6 +34,7 @@ written permission of Adobe.
 
 extern "C" {
 #include "peanut.h"
+#include "util.h"
 }
 
 /*******************************************************************************
@@ -395,5 +396,21 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 		 */
 	}
 	return kMoaErr_NoErr;
+}
+
+/*
+ * Logging
+ */
+
+extern "C" {
+
+void xtra_log(const char *message, void *log_ctx) {
+	if (!log_ctx)
+		return;
+
+	PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) log_ctx;
+	pMoaUtils->PrintMessage(buffer);
+}
+
 }
 
