@@ -22,3 +22,7 @@ echo "XtraXown" > "$ALMOND_BUNDLE/Contents/PkgInfo"
 
 $COMPILER -O2 $BUNDLEFLAGS $ADDINCLUDES $ADDEFINES $FLAGS $FRAMEWORKS $SOURCES -o "$ALMOND_BUNDLE/Contents/MacOS/$ALMOND_BIN"
 
+DEPLOY_DIR=$(date +%d%b%Y)
+mkdir -p "build/$DEPLOY_DIR"
+cp -p -r "$ALMOND_BUNDLE" "build/$DEPLOY_DIR"
+
