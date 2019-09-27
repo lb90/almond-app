@@ -1,5 +1,5 @@
-COMPILER_CROSS=../x86_64-apple-darwin15-clang
-COMPILER_NATIVE=clang
+COMPILER_CROSS=../i386-apple-darwin15-clang++
+COMPILER_NATIVE=clang++
 
 FLAGS_COMMON="-I../"
 FLAGS_CROSS="-mmacos-version-min=10.6 -Wall"

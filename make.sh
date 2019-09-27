@@ -2,12 +2,12 @@
 set -u
 set -e
 
-COMPILER=./i386-apple-darwin15-clang
+COMPILER=./i386-apple-darwin15-clang++
 ALMOND_BIN=Almond
 ALMOND_BUNDLE=Almond.xtra
 
 FRAMEWORKS="-framework Carbon -framework CoreFoundation -framework DiskArbitration -framework IOKit -framework Cocoa"
-BUNDLEFLAGS="-bundle -flat_namespace -undefined suppress -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt"
+BUNDLEFLAGS="-bundle -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt"
 ADDINCLUDES="-IXDK/Include"
 ADDEFINES="-DUSING_INIT_FROM_DICT"
 SOURCES="xtra.mm process.m diskserial.m platformserial.m mangler.m clipboard.m util.m"
