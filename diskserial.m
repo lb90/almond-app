@@ -41,10 +41,6 @@ char* get_boot_disk_sn(void)
       goto cleanup;
     }
 
-#ifdef ALMOND_DEBUG
-  NSLog(@"%@", props);
-#endif
-
   serial = CFStringCreateWithFormat(
                NULL, NULL, CFSTR("%@"),
                (CFTypeRef)CFDictionaryGetValue(props, CFSTR("Serial Number")));
@@ -100,9 +96,6 @@ char* get_boot_disk_sn_from_disk_arbitration(void)
           else
             {
               NSDictionary *desc_dict = (__bridge NSDictionary*) properties;
-#ifdef ALMOND_DEBUG
-              NSLog(@"%@", desc_dict);
-#endif
               NSString *sn = [desc_dict objectForKey:@"Serial Number"];
               text = util_string_copy([sn UTF8String]);
               CFRelease(properties);

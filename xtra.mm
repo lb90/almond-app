@@ -189,9 +189,7 @@ STDMETHODIMP TStdXtra_IMoaRegister::Register(
 	MoaError err = kMoaErr_NoErr;
 	PIMoaRegistryEntryDict pReg;
 	PMoaVoid pMemStr = NULL;
-#ifdef ALMOND_DEBUG
-	append_string_to_log("Register called");
-#endif
+
 	/* Register as scripting xtra (manifest that we implement IMoaMmXScript iface) */
 	err = pCache->AddRegistryEntry(pXtraDict, &CLSID_TStdXtra, &IID_IMoaMmXScript, &pReg);
 	if (err != kMoaErr_NoErr) {
@@ -279,9 +277,6 @@ TStdXtra_IMoaMmXScript::~TStdXtra_IMoaMmXScript()
 /* ----------------------------------------------------------------------------- */
 STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 {
-#ifdef ALMOND_DEBUG
-	append_string_to_log("Call called");
-#endif
 	switch	( callPtr->methodSelector ) 
 	{
 		case m_new:
@@ -317,11 +312,6 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 
 					success = process(str, &result);
 
-#ifdef ALMOND_DEBUG
-					if (result)
-  					append_string_to_log(result);
-#endif
-
 					if (result)
 						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
 					else
@@ -338,37 +328,4 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 	}
 	return kMoaErr_NoErr;
 }
-
-
-/* Helpers */
-
-#ifdef ALMOND_DEBUG
-void append_string_to_log(const char *text)
-{
-  static const char *home_dir = getenv("HOME");
-/*  static const char *path*/
-  if (!text)
-    return;
-/*  if (!home_dir)
-    return;*/
-
-  FILE *f = fopen("/Users/luca/almond_xtra_log.txt", "a");
-  if (f)
-    {
-      time_t result = time(NULL);
-      if (result != -1)
-        {
-          fprintf(f, "%s: ", asctime(gmtime(&result)));
-        }
-      else
-        {
-          fprintf(f, "<unknown time>: ");
-        }
-      fprintf(f, "%s\n", text);
-      fclose(f);
-    }
-}
-#endif
-
-/**/
 
