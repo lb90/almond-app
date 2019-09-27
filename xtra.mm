@@ -21,7 +21,6 @@ written permission of Adobe.
 #include <string.h>
 #include <stdlib.h>
 #include "xclassver.h"
-#include "moatry.h"
 
 #include "driservc.h"
 #include "drivalue.h"
@@ -166,31 +165,22 @@ END_XTRA
 
 STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 {
-moa_try
-		
-	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface));
-	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils));
+	This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface);
+	This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils);
 
 	This->log.func = xtra_log;
 	This->log.data = This->pMoaUtils;
 
-moa_catch
-moa_catch_end
-moa_try_end
+	return kMoaErr_NoErr;
 }
 
 STDMETHODIMP_(void) MoaDestroy_TStdXtra(TStdXtra * This)
 {
-moa_try
-
+	This->log.data = NULL;
 	if (This->pMoaUtils != NULL)
-		ThrowErr (This->pMoaUtils->Release());
+		This->pMoaUtils->Release();
 	if (This->pValueInterface != NULL) 
-		ThrowErr (This->pValueInterface->Release());
-
-moa_catch
-moa_catch_end
-moa_try_end_void
+		This->pValueInterface->Release();
 }
 
 
