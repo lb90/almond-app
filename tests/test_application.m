@@ -1,4 +1,5 @@
 #import "../peanut.h"
+#import "../log.h"
 
 #import <stdlib.h>
 #import <string.h>
@@ -12,6 +13,10 @@ typedef enum {
 operation_t operation;
 char *mode_string; /* only used for operation_set */
 char *file_path;
+
+void log_print(const char *message, void *data) {
+	printf("%s\n", message);
+}
 
 void print_invalid_arguments(const char *arg_0) {
 	printf("Usage: %s [set/get] [rwhvls] path\n", arg_0);
@@ -50,10 +55,11 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
+	log_ctx_t log = { log_print, NULL };
 	if (operation == operation_get) {
 		char *result = NULL;
 
-		peanut_get(file_path, &result);
+		peanut_get(&log, file_path, &result);
 
 		if (result) {
 			printf("%s\n", result);
@@ -66,7 +72,7 @@ int main(int argc, char **argv) {
 	else if (operation == operation_set) {
 		int result = 0;
 
-		peanut_set(file_path, mode_string, &result);
+		peanut_set(&log, file_path, mode_string, &result);
 
 		printf("%d\n", result);
 	}
