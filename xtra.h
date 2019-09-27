@@ -18,6 +18,9 @@ written permission of Adobe.
 #include "xmmvalue.h"
 #include "mmiutil.h"
 
+extern "C" {
+#include "log.h"
+}
 
 /* --------------------------------------------------- */
 
@@ -28,6 +31,9 @@ EXTERN_BEGIN_DEFINE_CLASS_INSTANCE_VARS(TStdXtra)
 
 	PIMoaMmValue	pValueInterface;
 	PIMoaMmUtils2 	pMoaUtils;
+
+	log_ctx_t	log;
+	
 	/*
 	 * ---> insert additional variable(s) -->
 	 */ 

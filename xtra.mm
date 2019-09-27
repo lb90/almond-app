@@ -37,6 +37,28 @@ extern "C" {
 #include "util.h"
 }
 
+/*
+ * Logging
+ */
+
+extern "C" {
+
+void xtra_log(const char *message, void *data) {
+	PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) data;
+	if (!pMoaUtils)
+		return;
+
+	char *buffer = util_string_compose("PEANUT MSG: %s", message);
+	if (!buffer)
+		return;
+
+	pMoaUtils->PrintMessage(buffer);
+
+	free(buffer);
+}
+
+}
+
 /*******************************************************************************
  * SCRIPTING XTRA MESSAGE TABLE DESCRIPTION.
  *
@@ -148,7 +170,10 @@ moa_try
 		
 	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface));
 	ThrowErr (This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils));
-	
+
+	This->log.func = xtra_log;
+	This->log.data = This->pMoaUtils;
+
 moa_catch
 moa_catch_end
 moa_try_end
@@ -327,7 +352,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					const char *file_name = arg_value_string;
 					char *result = NULL;
 
-					peanut_get(file_name, &result);
+					peanut_get(&(pObj->log), file_name, &result);
 
 					if (result)
 						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
@@ -382,7 +407,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					const char *mode_string = arg_value_string_2;
 					int result = 0;
 
-					peanut_set(file_name, mode_string, &result);
+					peanut_set(&(pObj->log), file_name, mode_string, &result);
 
 					if (result == 1)
 						pObj->pValueInterface->IntegerToValue(1, &(callPtr->resultValue));
@@ -396,21 +421,5 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 		 */
 	}
 	return kMoaErr_NoErr;
-}
-
-/*
- * Logging
- */
-
-extern "C" {
-
-void xtra_log(const char *message, void *log_ctx) {
-	if (!log_ctx)
-		return;
-
-	PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) log_ctx;
-	pMoaUtils->PrintMessage(buffer);
-}
-
 }
 

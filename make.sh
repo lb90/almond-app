@@ -10,7 +10,7 @@ FRAMEWORKS="-framework Carbon"
 BUNDLEFLAGS="-bundle -flat_namespace -undefined suppress -exported_symbols_list XDK/Include/MACMach/xtra_exports.txt"
 ADDINCLUDES="-IXDK/Include"
 ADDEFINES="-DUSING_INIT_FROM_DICT"
-SOURCES="xtra.mm peanut.m util.m"
+SOURCES="xtra.mm peanut.m util.m log.m"
 FLAGS="-mmacos-version-min=10.6"
 
 if [ ! -d "$TARGET_BUNDLE/Contents/MacOS/" ]; then

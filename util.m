@@ -1,7 +1,7 @@
 #import "util.h"
 
 #include <stdlib.h>
-#include <stdarg.h> /* for varargs */
+#include <stdio.h>
 #include <string.h>
 
 char *util_string_copy(const char *src)
@@ -26,28 +26,33 @@ char *util_string_copy(const char *src)
   return dst;
 }
 
-char *util_string_compose(const char *format_string, ...)
+char *util_string_compose(const char *format, ...)
 {
-  va_list args;
-  va_start(args, format_string);
+  va_list ap;
+  va_start(ap, format);
+  char *buffer = util_string_compose_va(format, ap);
+  va_end(ap);
 
-  int ret = vsnprintf(NULL, 0, format_string, args);
+  return buffer;
+}
+
+char *util_string_compose_va(const char *format, va_list ap)
+{
+  int ret = vsnprintf(NULL, 0, format, ap);
   if (ret < 0)
     return NULL;
+
   size_t length = ((size_t)ret) + 1;
   char *buffer = malloc(length);
   if (!buffer)
     return NULL;
   memset(buffer, 0, length);
 
-  int ret = vsnprintf(buffer, length, format_string, args);
+  ret = vsnprintf(buffer, length, format, ap);
   if (ret < 0) {
     free(buffer);
     return NULL;
   }
-  /* buffer is NULL terminated */
-
-  va_end(args);
 
   return buffer;
 }
@@ -63,11 +68,12 @@ char *util_string_from_error_code(int error_code) {
     free(buffer);
     return NULL;
   }
-  /* buffer is NULL terminated */
 
   if (strlen(buffer) == 0) {
     free(buffer);
     return NULL;
   }
+
+  return buffer;
 }
 

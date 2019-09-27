@@ -1,54 +1,47 @@
 #include "log.h"
 #include "util.h"
 
-#include <stdarg.h> /* for varargs */
+#include <stdlib.h>
+#include <errno.h> /* for log_message_with_error_code */
 
-void log(void *log_ctx,
-         const char *text)
+void do_log(log_ctx_t *log,
+         const char *message)
 {
-  if (!log_ctx)
+  if (!log || !(log->func))
     return;
 
-  char *buffer = util_string_compose("PEANUT MSG: %s");
-  if (!buffer)
-    return;
-
-  PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) log_ctx;
-  pMoaUtils->PrintMessage(buffer);
+  (log->func)(message, log->data);
 }
 
-void log_message(void *log_ctx,
-                 const char *format,
-                 ...)
+void log_message_with_error_code(log_ctx_t *log,
+                                 const char *format, ...)
 {
-  if (!log_ctx)
-    return;
+  int code = errno;
+  char *message = NULL;
+  char *description = NULL;
+  char *complete = NULL;
+  va_list ap;
+  va_start(ap, format);
 
-  char *buffer = util_string_compose("PEANUT MSG: %s");
-  if (!buffer)
-    return;
+  message = util_string_compose_va(format, ap);
+  if (!message)
+    goto cleanup;
 
-  PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) log_ctx;
-  pMoaUtils->PrintMessage(buffer);
-}
+  description = util_string_from_error_code(code);
+  if (!description)
+    goto cleanup;
+  
+  complete = util_string_compose("%s - %s", message, description);
+  if (!complete)
+    goto cleanup;
 
-void log_error_code(void *log_ctx,
-                    const char *format,
-                    ...)
-{
-  int error_code = errno;
+  do_log(log, complete);
 
-  char *error_description = util_string_from_error_code(error_code);
-  if (error_description) {
-    char *buffer = util_string_compose("%s - %s", message, error_description);
-    if (buffer) {
-      log(log_ctx, buffer);
-      free(buffer);
-    }
-    free(error_description);
-  }
-  else {
-    log(log_ctx, message);
-  }
+cleanup:
+  free(complete);
+  free(description);
+  free(message);
+
+  va_end(ap);
 }
 
