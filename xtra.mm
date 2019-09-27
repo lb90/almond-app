@@ -47,7 +47,7 @@ void xtra_log(const char *message, void *data) {
 	if (!pMoaUtils)
 		return;
 
-	char *buffer = util_string_compose("PEANUT MSG: %s", message);
+	char *buffer = util_string_compose("PEANUT MSG: %s\n", message);
 	if (!buffer)
 		return;
 
@@ -111,7 +111,7 @@ void xtra_log(const char *message, void *data) {
  *******************************************************************************/ 
 
 static const char header[] = {
-  "xtra Almond -- version 1.0.0\n"
+  "xtra Peanut -- version 1.2.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
 	"* hazpeaget string path -- Retrieves file attributes informations. path: path to the file.\n"
 	"* hazpeaset string path, string attributes -- Sets file attributes. path: path to the file. attributes: attributes to set (rwhvls)\n"
