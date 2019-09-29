@@ -1,7 +1,7 @@
 COMPILER_CROSS=../i386-apple-darwin15-clang++
 COMPILER_NATIVE=clang++
 
-FRAMEWORKS="-framework Carbon"
+FRAMEWORKS="-framework Carbon -framework Foundation"
 FLAGS_COMMON="-I../"
 FLAGS_CROSS="-mmacos-version-min=10.6 -Wall"
 FLAGS_NATIVE="-Wall"
