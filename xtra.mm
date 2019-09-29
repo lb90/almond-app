@@ -111,10 +111,10 @@ void xtra_log(const char *message, void *data) {
  *******************************************************************************/ 
 
 static const char header[] = {
-  "xtra Peanut -- version 1.2.0\n"
+  "xtra Peanut -- version 1.6.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
-	"* hazpeaget string path -- Retrieves file attributes informations. path: path to the file.\n"
-	"* hazpeaset string path, string attributes -- Sets file attributes. path: path to the file. attributes: attributes to set (rwhvls)\n"
+	"* HazPeaGet string path -- Retrieves file attributes informations. path: path to the file.\n"
+	"* HazPeaSet string path, string attributes -- Sets file attributes. path: path to the file. attributes: attributes to set (rwhvls)\n"
 		/*
 		 * ---> insert additional handler(s) MUST MATCH WITH ENUMS BELOW -->
 		 */ 
