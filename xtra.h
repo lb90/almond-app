@@ -18,9 +18,7 @@ written permission of Adobe.
 #include "xmmvalue.h"
 #include "mmiutil.h"
 
-extern "C" {
 #include "log.h"
-}
 
 /* --------------------------------------------------- */
 

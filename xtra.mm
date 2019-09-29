@@ -31,16 +31,12 @@ written permission of Adobe.
 #include "mmidate.h"
 #include "mmiclr.h"
 
-extern "C" {
 #include "peanut.h"
 #include "util.h"
-}
 
 /*
  * Logging
  */
-
-extern "C" {
 
 void xtra_log(const char *message, void *data) {
 	PIMoaMmUtils2 pMoaUtils = (PIMoaMmUtils2) data;
@@ -54,8 +50,6 @@ void xtra_log(const char *message, void *data) {
 	pMoaUtils->PrintMessage(buffer);
 
 	free(buffer);
-}
-
 }
 
 /*******************************************************************************

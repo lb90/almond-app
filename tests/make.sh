@@ -12,6 +12,6 @@ mkdir cross/
 rm -rf native/
 mkdir native/
 
-$COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS  test_load_xtra.m -o cross/test_load_xtra
-$COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS $FRAMEWORKS test_application.m ../peanut.m ../log.m ../util.m -o cross/test_application
+$COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS  test_load_xtra.mm -o cross/test_load_xtra
+$COMPILER_CROSS  $FLAGS_COMMON $FLAGS_CROSS $FRAMEWORKS test_application.mm ../peanut.mm ../log.mm ../util.mm -o cross/test_application
 
