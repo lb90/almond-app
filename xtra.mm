@@ -105,7 +105,7 @@ void xtra_log(const char *message, void *data) {
  *******************************************************************************/ 
 
 static const char header[] = {
-  "xtra Peanut -- version 1.6.0\n"
+  "xtra Peanut -- version 1.8.0\n"
 	"new object me\n" /* standard first handler entry in all message tables */
 	"* HazPeaGet string path -- Retrieves file attributes informations. path: path to the file.\n"
 	"* HazPeaSet string path, string attributes -- Sets file attributes. path: path to the file. attributes: attributes to set (rwhvls)\n"
@@ -161,6 +161,7 @@ STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 {
 	This->pCallback->QueryInterface(&IID_IMoaMmValue, (PPMoaVoid) &This->pValueInterface);
 	This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils);
+	This->pCallback->QueryInterface(&IID_IMoaDrPlayer, (PPMoaVoid) &This->pDrPlayer);
 
 	This->log.func = xtra_log;
 	This->log.data = This->pMoaUtils;
@@ -171,6 +172,8 @@ STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 STDMETHODIMP_(void) MoaDestroy_TStdXtra(TStdXtra * This)
 {
 	This->log.data = NULL;
+	if (This->pDrPlayer != NULL)
+		This->pDrPlayer->Release();
 	if (This->pMoaUtils != NULL)
 		This->pMoaUtils->Release();
 	if (This->pValueInterface != NULL) 

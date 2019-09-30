@@ -29,6 +29,7 @@ EXTERN_BEGIN_DEFINE_CLASS_INSTANCE_VARS(TStdXtra)
 
 	PIMoaMmValue	pValueInterface;
 	PIMoaMmUtils2 	pMoaUtils;
+	PIMoaDrPlayer	pDrPlayer;
 
 	log_ctx_t	log;
 	
