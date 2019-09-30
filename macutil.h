@@ -1,9 +1,11 @@
 #ifndef PEANUT_MACUTIL_H
 #define PEANUT_MACUTIL_H
 
-#include <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 
-char* util_hfs_path_to_posix_path(const char *hfs_path);
+#import "log.h"
+
+char* util_hfs_path_to_posix_path(log_ctx_t *log, const char *hfs_path);
 
 #endif
 

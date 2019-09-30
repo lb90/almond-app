@@ -26,7 +26,8 @@ void log_message_simple(log_ctx_t *log,
 
 void log_message(log_ctx_t *log,
                  log_level_t level,
-                 const char *format, ...)
+                 const char *format,
+                 ...)
 {
   char *message = NULL;
   va_list ap;
@@ -46,9 +47,10 @@ cleanup:
   va_end(ap);
 }
 
-void log_message_with_error_code(log_ctx_t *log,
-                                 log_level_t level,
-                                 const char *format, ...)
+void log_message_errno(log_ctx_t *log,
+                       log_level_t level,
+                       const char *format,
+                       ...)
 {
   int code = errno;
   char *message = NULL;

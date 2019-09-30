@@ -28,10 +28,10 @@ void log_message(log_ctx_t *log,
                  const char *format,
                  ...);
 
-void log_message_with_error_code(log_ctx_t *log_ctx,
-                                 log_level_t level,
-                                 const char *format,
-                                 ...);
+void log_message_errno(log_ctx_t *log_ctx,
+                       log_level_t level,
+                       const char *format,
+                       ...);
 
 #endif
 
