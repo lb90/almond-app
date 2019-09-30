@@ -329,34 +329,29 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				if (!pObj->pValueInterface)
 					return kMoaErr_NoErr;
 
-				/* This shows how to access an argument
-				/  the first argument in the list is the "me" value, so the user arguments
-				/  start at the second position in the list */
 				pciGetArgByIndex(callPtr, 1, &arg_value);
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value, &arg_value_string);
-				if (err == kMoaErr_NoErr && arg_value_string != NULL)
-				{
-					const char *file_name = arg_value_string;
-					char *result = NULL;
-
-					peanut_get(&(pObj->log), file_name, &result);
-
-					if (result)
-						pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
-					else
-						pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
-
-					if (result)
-					{
-						free(result);
-						result = NULL;
-					}
+				if (err != kMoaErr_NoErr || arg_value_string == NULL) {
+					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
+					break;
 				}
-				else
-				{
+
+				const char *file_name = arg_value_string;
+				char *result = NULL;
+
+				peanut_get(&(pObj->log), file_name, &result);
+
+				if (result) {
+					pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
+				}
+				else {
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 				}
+
+				if (result)
+					free(result);
+
 			}
 			break;
 		case m_hazpeaset:
@@ -370,14 +365,10 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				if (!pObj->pValueInterface)
 					return kMoaErr_NoErr;
 
-				/* This shows how to access an argument
-				/  the first argument in the list is the "me" value, so the user arguments
-				/  start at the second position in the list */
 				pciGetArgByIndex(callPtr, 1, &arg_value_1);
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_1, &arg_value_string_1);
-				if (err != kMoaErr_NoErr || arg_value_string_1 == NULL)
-				{
+				if (err != kMoaErr_NoErr || arg_value_string_1 == NULL) {
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 					break;
 				}
@@ -385,22 +376,22 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 				pciGetArgByIndex(callPtr, 2, &arg_value_2);
 
 				err = pObj->pValueInterface->ValueToStringPtr(&arg_value_2, &arg_value_string_2);
-				if (err != kMoaErr_NoErr || arg_value_string_2 == NULL)
-				{
+				if (err != kMoaErr_NoErr || arg_value_string_2 == NULL) {
 					pObj->pValueInterface->StringToValue("", &(callPtr->resultValue));
 					break;
 				}
+
+				const char *file_name = arg_value_string_1;
+				const char *mode_string = arg_value_string_2;
+				int result = 0;
+
+				peanut_set(&(pObj->log), file_name, mode_string, &result);
+
+				if (result == 1) {
+					pObj->pValueInterface->IntegerToValue(1, &(callPtr->resultValue));
+				}
 				else {
-					const char *file_name = arg_value_string_1;
-					const char *mode_string = arg_value_string_2;
-					int result = 0;
-
-					peanut_set(&(pObj->log), file_name, mode_string, &result);
-
-					if (result == 1)
-						pObj->pValueInterface->IntegerToValue(1, &(callPtr->resultValue));
-					else
-						pObj->pValueInterface->IntegerToValue(0, &(callPtr->resultValue));
+					pObj->pValueInterface->IntegerToValue(0, &(callPtr->resultValue));
 				}
 			}
 			break;
