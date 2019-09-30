@@ -337,6 +337,9 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					break;
 				}
 
+				log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+				"Get con argomento \"%s\"", arg_value_string);
+
 				/* Se siamo in Director controlla le sue path */
 				char *director_resolved_path = NULL;
 				if (pObj->pDrPlayer) {
@@ -351,7 +354,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 						                                       director_resolved_path,
 						                                       length);
 						if (err != kMoaErr_NoErr) {
-							log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+							log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
 							"Path non risolto da Director");
 							free(director_resolved_path);
 							director_resolved_path = NULL;
@@ -363,7 +366,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					}
 				}
 				else {
-					log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+					log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
 					"Director Player non presente");
 				}
 
@@ -412,6 +415,9 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					break;
 				}
 
+				log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+				"Set con argomenti \"%s\", %s", arg_value_string_1, arg_value_string_2);
+
 				/* Se siamo in Director controlla le sue path */
 				char *director_resolved_path = NULL;
 				if (pObj->pDrPlayer) {
@@ -426,7 +432,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 						                                       director_resolved_path,
 						                                       length);
 						if (err != kMoaErr_NoErr) {
-							log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+							log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
 							"Path non risolto da Director");
 							free(director_resolved_path);
 							director_resolved_path = NULL;
@@ -438,7 +444,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					}
 				}
 				else {
-					log_message(&(pObj->log), LOG_LEVEL_DEBUG,
+					log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
 					"Director Player non presente");
 				}
 

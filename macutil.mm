@@ -14,7 +14,7 @@ char* util_hfs_path_to_posix_path(log_ctx_t *log,
                               hfs_path,
                               kCFStringEncodingUTF8);
   if (!hfs_path_cf) {
-    log_message(log, LOG_LEVEL_ERROR,
+    log_message_simple(log, LOG_LEVEL_ERROR,
     "Impossibile allocare memoria o encoding della stringa errato, richiesto UTF8");
     return NULL;
   }

@@ -20,7 +20,7 @@ void peanut_get(log_ctx_t *log,
 		return;
 
 	if (strlen(file_name) == 0) {
-		log_message(log, LOG_LEVEL_INFO,
+		log_message_simple(log, LOG_LEVEL_INFO,
 		"Path vuoto");
 		*result = NULL;
 		return;
