@@ -18,7 +18,7 @@ void peanut_get(log_ctx_t *log_ctx,
 
 	*result = (char*) malloc(max_size);
 	if (!result) {
-		log_message_with_error_code(log_ctx,
+		log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 		"Impossibile allocare memoria per %lu byte", (unsigned long) max_size);
 		return;
 	}
@@ -30,7 +30,7 @@ void peanut_get(log_ctx_t *log_ctx,
 
 	struct stat st;
 	if (stat(file_name_posix, &st) < 0) {
-		log_message_with_error_code(log_ctx,
+		log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 		"Impossibile eseguire stat di %s", file_name_posix);
 		free(file_name_posix);
 		return;
@@ -67,7 +67,7 @@ void peanut_set(log_ctx_t *log_ctx,
 
 	struct stat st_original;
 	if (stat(file_name_posix, &st_original) < 0) {
-		log_message_with_error_code(log_ctx,
+		log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 		"Impossibile eseguire stat di %s", file_name_posix);
 		*result = 0;
 		free(file_name_posix);
@@ -131,14 +131,14 @@ void peanut_set(log_ctx_t *log_ctx,
 		case OP_APPLY_FIRST_FLAGS: {
 			if (st_original.st_flags != st_new.st_flags) {
 				if (chflags(file_name_posix, st_new.st_flags) < 0) {
-					log_message_with_error_code(log_ctx,
+					log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 					"Impossibile eseguire chflags di %s (mode: %s)", file_name_posix, mode_string);
 					*result = 0;
 				}
 			}
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name_posix, st_new.st_mode) < 0) {
-					log_message_with_error_code(log_ctx,
+					log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 					"Impossibile eseguire chmod di %s (mode: %s)", file_name_posix, mode_string);
 					*result = 0;
 				}
@@ -148,14 +148,14 @@ void peanut_set(log_ctx_t *log_ctx,
 		case OP_APPLY_FIRST_PERMISSIONS: {
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name_posix, st_new.st_mode) < 0) {
-					log_message_with_error_code(log_ctx,
+					log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 					"Impossibile eseguire chmod di %s (mode: %s)", file_name_posix, mode_string);
 					*result = 0;
 				}
 			}
 			if (st_original.st_flags != st_new.st_flags) {
 				if (chflags(file_name_posix, st_new.st_flags) < 0) {
-					log_message_with_error_code(log_ctx,
+					log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 					"Impossibile eseguire chflags di %s (mode: %s)", file_name_posix, mode_string);
 					*result = 0;
 				}
@@ -167,19 +167,19 @@ void peanut_set(log_ctx_t *log_ctx,
 			   a) il file è locked
 			   b) non cambieremo nulla del locked */
 			if (chflags(file_name_posix, (st_new.st_flags & ~UF_IMMUTABLE)) < 0) {
-				log_message_with_error_code(log_ctx,
+				log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 				"Impossibile eseguire chflags per rimuovere flag locked a %s", file_name_posix);
 				*result = 0;
 			}
 			if (st_original.st_mode != st_new.st_mode) {
 				if (chmod(file_name_posix, st_new.st_mode) < 0) {
-					log_message_with_error_code(log_ctx,
+					log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 					"Impossibile eseguire chmod di %s (mode: %s)", file_name_posix, mode_string);
 					*result = 0;
 				}
 			}
 			if (chflags(file_name_posix, (st_new.st_flags)) < 0) {
-				log_message_with_error_code(log_ctx,
+				log_message_with_error_code(log_ctx, LOG_LEVEL_ERROR,
 				"Impossibile eseguire chflags per aggiungere flag locked a %s", file_name_posix);
 				*result = 0;
 			}

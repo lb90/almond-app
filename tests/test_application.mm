@@ -55,7 +55,12 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-	log_ctx_t log = { log_print, NULL };
+	log_ctx_t log = {
+		.level = LOG_LEVEL_DEBUG,
+		.func = log_print,
+		.data = NULL
+	};
+
 	if (operation == operation_get) {
 		char *result = NULL;
 

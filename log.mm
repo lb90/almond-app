@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <errno.h> /* for log_message_with_error_code */
 
+static
 void do_log(log_ctx_t *log,
             const char *message)
 {
@@ -14,18 +15,27 @@ void do_log(log_ctx_t *log,
 }
 
 void log_message_simple(log_ctx_t *log,
+                        log_level_t level,
                         const char *message)
 {
+  if (log->level > level)
+    return;
+
   do_log(log, message);
 }
 
 void log_message(log_ctx_t *log,
+                 log_level_t level,
                  const char *format, ...)
 {
+  char *message = NULL;
   va_list ap;
   va_start(ap, format);
 
-  char *message = util_string_compose_va(format, ap);
+  if (log->level > level)
+    goto cleanup;
+
+  message = util_string_compose_va(format, ap);
   if (!message)
     goto cleanup;
 
@@ -37,6 +47,7 @@ cleanup:
 }
 
 void log_message_with_error_code(log_ctx_t *log,
+                                 log_level_t level,
                                  const char *format, ...)
 {
   int code = errno;
@@ -45,6 +56,9 @@ void log_message_with_error_code(log_ctx_t *log,
   char *complete = NULL;
   va_list ap;
   va_start(ap, format);
+
+  if (log->level > level)
+    goto cleanup;
 
   message = util_string_compose_va(format, ap);
   if (!message)
