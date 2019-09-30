@@ -22,3 +22,7 @@ echo "XtraXown" > "$TARGET_BUNDLE/Contents/PkgInfo"
 
 $COMPILER -O2 $BUNDLEFLAGS $ADDINCLUDES $ADDEFINES $FLAGS $FRAMEWORKS $SOURCES -o "$TARGET_BUNDLE/Contents/MacOS/$TARGET_BIN"
 
+DEPLOY_DIR=$(date +%d%b%Y)
+mkdir -p "build/$DEPLOY_DIR"
+cp -p -r "$TARGET_BUNDLE" "build/$DEPLOY_DIR"
+
