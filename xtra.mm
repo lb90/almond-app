@@ -328,6 +328,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 
 		case m_hazpeaget:
 			{
+				log_ctx_t *log = &(pObj->log);
 				MoaMmValue arg_value;
 				ConstPMoaChar arg_value_string;
 				MoaError err = kMoaErr_NoErr;
@@ -343,43 +344,65 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					break;
 				}
 
-				log_message(&(pObj->log), LOG_LEVEL_DEBUG,
-				"Get con argomento \"%s\"", arg_value_string);
+				log_message(
+					log,
+					LOG_LEVEL_DEBUG,
+					"Get con argomento \"%s\"",
+					arg_value_string
+				);
 
 				/* Se siamo in Director controlla le sue path */
 				char *director_resolved_path = NULL;
 				if (pObj->pDrPlayer) {
 					const size_t length = 4096;
+
 					director_resolved_path = (char*) malloc(length);
 					if (!director_resolved_path) {
-						log_message_errno(&(pObj->log), LOG_LEVEL_ERROR,
-						"Impossibile allocare memoria per %lu byte", (unsigned long) length);
+						log_message_errno(
+							log,
+							LOG_LEVEL_ERROR,
+							"Impossibile allocare memoria per %lu byte",
+							(unsigned long) length
+						);
 					}
 					else {
+						memset(director_resolved_path, 0, length);
 						err = pObj->pDrPlayer->ResolveFileName(arg_value_string,
 						                                       director_resolved_path,
 						                                       length);
 						if (err != kMoaErr_NoErr) {
-							log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
-							"Path non risolto da Director");
+							log_message_simple(
+								log,
+								LOG_LEVEL_DEBUG,
+								"Path non risolto da Director"
+							);
 							free(director_resolved_path);
 							director_resolved_path = NULL;
 						}
 						else {
-							log_message(&(pObj->log), LOG_LEVEL_DEBUG,
-							"Risoluzione path da Director: \"%s\"", director_resolved_path);
+							/* be safe */
+							director_resolved_path[length - 1] = 0;
+							log_message(
+								log,
+								LOG_LEVEL_DEBUG,
+								"Risoluzione path da Director: \"%s\"",
+								director_resolved_path
+							);
 						}
 					}
 				}
 				else {
-					log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
-					"Director Player non presente");
+					log_message_simple(
+						log,
+						LOG_LEVEL_DEBUG,
+						"Director non presente"
+					);
 				}
 
 				const char *file_name = director_resolved_path? director_resolved_path : arg_value_string;
 				char *result = NULL;
 
-				peanut_get(&(pObj->log), file_name, &result);
+				peanut_get(log, file_name, &result);
 
 				if (result) {
 					pObj->pValueInterface->StringToValue(result, &(callPtr->resultValue));
@@ -396,6 +419,7 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 			break;
 		case m_hazpeaset:
 			{
+				log_ctx_t *log = &(pObj->log);
 				MoaMmValue arg_value_1;
 				ConstPMoaChar arg_value_string_1 = NULL;
 				MoaMmValue arg_value_2;
@@ -421,37 +445,59 @@ STDMETHODIMP TStdXtra_IMoaMmXScript::Call (PMoaDrCallInfo callPtr)
 					break;
 				}
 
-				log_message(&(pObj->log), LOG_LEVEL_DEBUG,
-				"Set con argomenti \"%s\", %s", arg_value_string_1, arg_value_string_2);
+				log_message(
+					log,
+					LOG_LEVEL_DEBUG,
+					"Set con argomenti \"%s\", %s",
+					arg_value_string_1, arg_value_string_2
+				);
 
 				/* Se siamo in Director controlla le sue path */
 				char *director_resolved_path = NULL;
 				if (pObj->pDrPlayer) {
 					const size_t length = 4096;
+
 					director_resolved_path = (char*) malloc(length);
 					if (!director_resolved_path) {
-						log_message_errno(&(pObj->log), LOG_LEVEL_ERROR,
-						"Impossibile allocare memoria per %lu byte", (unsigned long) length);
+						log_message_errno(
+							log,
+							LOG_LEVEL_ERROR,
+							"Impossibile allocare memoria per %lu byte",
+							(unsigned long) length
+						);
 					}
 					else {
+						memset(director_resolved_path, 0, length);
 						err = pObj->pDrPlayer->ResolveFileName(arg_value_string_1,
 						                                       director_resolved_path,
 						                                       length);
 						if (err != kMoaErr_NoErr) {
-							log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
-							"Path non risolto da Director");
+							log_message_simple(
+								log,
+								LOG_LEVEL_DEBUG,
+								"Path non risolto da Director"
+							);
 							free(director_resolved_path);
 							director_resolved_path = NULL;
 						}
 						else {
-							log_message(&(pObj->log), LOG_LEVEL_DEBUG,
-							"Risoluzione path da Director: \"%s\"", director_resolved_path);
+							/* be safe */
+							director_resolved_path[length - 1] = 0;
+							log_message(
+								log,
+								LOG_LEVEL_DEBUG,
+								"Risoluzione path da Director: \"%s\"",
+								director_resolved_path
+							);
 						}
 					}
 				}
 				else {
-					log_message_simple(&(pObj->log), LOG_LEVEL_DEBUG,
-					"Director Player non presente");
+					log_message_simple(
+						log,
+						LOG_LEVEL_DEBUG,
+						"Director non presente"
+					);
 				}
 
 				const char *file_name = director_resolved_path? director_resolved_path : arg_value_string_1;
