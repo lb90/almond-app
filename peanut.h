@@ -4,10 +4,10 @@
 #include "log.h"
 
 void peanut_get(log_ctx_t *log,
-                const char *file_name,
+                const char *path,
                 char **result);
 void peanut_set(log_ctx_t *log,
-                const char *file_name,
+                const char *path,
                 const char *mode_string,
                 int *result);
 

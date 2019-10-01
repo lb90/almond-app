@@ -163,7 +163,7 @@ STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 	This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils);
 	This->pCallback->QueryInterface(&IID_IMoaDrPlayer, (PPMoaVoid) &This->pDrPlayer);
 
-	This->log.level = LOG_LEVEL_NONE; /* only errors */
+	This->log.level = LOG_LEVEL_NONE; /* no log at all */
 	This->log.func = xtra_log;
 	This->log.data = This->pMoaUtils;
 
