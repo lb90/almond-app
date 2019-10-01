@@ -1,9 +1,13 @@
 #build directories
-Peanut.xtra/
+*.xtra/
 build/
 
 #object files
 *.o
+
+#patch and diff files
+*.patch
+*.diff
 
 #compiler/crosscompiler symlink
 *cc*

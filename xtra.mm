@@ -163,7 +163,13 @@ STDMETHODIMP_(MoaError) MoaCreate_TStdXtra (TStdXtra * This)
 	This->pCallback->QueryInterface(&IID_IMoaMmUtils2, (PPMoaVoid) &This->pMoaUtils);
 	This->pCallback->QueryInterface(&IID_IMoaDrPlayer, (PPMoaVoid) &This->pDrPlayer);
 
+#if defined(PEANUT_DEBUG)
+	This->log.level = LOG_LEVEL_DEBUG;
+#elif defined(PEANUT_LOG)
+	This->log.level = LOG_LEVEL_ERROR;
+#else
 	This->log.level = LOG_LEVEL_NONE; /* no log at all */
+#endif
 	This->log.func = xtra_log;
 	This->log.data = This->pMoaUtils;
 

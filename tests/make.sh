@@ -6,6 +6,8 @@ FLAGS_COMMON="-I../"
 FLAGS_CROSS="-mmacos-version-min=10.6 -Wall"
 FLAGS_NATIVE="-Wall"
 
+echo "Make Tests"
+
 rm -rf cross/
 mkdir cross/
 
